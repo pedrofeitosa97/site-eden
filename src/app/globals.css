@@ -1,0 +1,217 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid rgba(244, 168, 200, 0.7);
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+
+  :root {
+    --eden-pink: #f4a8c8;
+    --eden-pink-light: #ffc8e0;
+    --eden-pink-dark: #c76b9a;
+    --eden-purple: #9b6fd4;
+    --eden-holographic: #e8b4f8;
+    --eden-dark: #0a0a0f;
+    --eden-darker: #050508;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--eden-pink-dark) var(--eden-darker);
+  }
+
+  *::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--eden-darker);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: var(--eden-pink-dark);
+    border-radius: 3px;
+  }
+
+  body {
+    @apply bg-eden-darker text-white antialiased;
+    background-image: radial-gradient(
+        ellipse at 20% 50%,
+        rgba(155, 111, 212, 0.08) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at 80% 20%,
+        rgba(244, 168, 200, 0.06) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at 50% 80%,
+        rgba(199, 107, 154, 0.05) 0%,
+        transparent 50%
+      );
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: rgba(244, 168, 200, 0.3);
+    color: white;
+  }
+}
+
+@layer components {
+  .holographic-text {
+    background: linear-gradient(
+      135deg,
+      #f4a8c8 0%,
+      #e8b4f8 25%,
+      #9b6fd4 50%,
+      #ffc8e0 75%,
+      #f4a8c8 100%
+    );
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  .holographic-border {
+    position: relative;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .holographic-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      rgba(244, 168, 200, 0.5),
+      rgba(155, 111, 212, 0.3),
+      rgba(232, 180, 248, 0.5),
+      rgba(199, 107, 154, 0.3)
+    );
+    z-index: -1;
+    border-radius: inherit;
+  }
+
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-xl;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300;
+  }
+
+  .glass-card-hover:hover {
+    @apply bg-white/10 border-eden-pink/30;
+    box-shadow: 0 8px 32px rgba(244, 168, 200, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .eden-button {
+    @apply relative px-6 py-3 rounded-lg font-medium transition-all duration-300 overflow-hidden;
+    background: linear-gradient(
+      135deg,
+      rgba(244, 168, 200, 0.2),
+      rgba(155, 111, 212, 0.2)
+    );
+    border: 1px solid rgba(244, 168, 200, 0.3);
+  }
+
+  .eden-button:hover {
+    background: linear-gradient(
+      135deg,
+      rgba(244, 168, 200, 0.4),
+      rgba(155, 111, 212, 0.4)
+    );
+    border-color: rgba(244, 168, 200, 0.6);
+    box-shadow: 0 0 20px rgba(244, 168, 200, 0.2);
+    transform: translateY(-1px);
+  }
+
+  .eden-button-primary {
+    @apply eden-button text-white;
+    background: linear-gradient(135deg, #c76b9a, #9b6fd4);
+    border: none;
+  }
+
+  .eden-button-primary:hover {
+    background: linear-gradient(135deg, #f4a8c8, #9b6fd4);
+    box-shadow: 0 0 30px rgba(244, 168, 200, 0.3);
+  }
+
+  .noise-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+
+  .scanline {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 49;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px
+    );
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px rgba(244, 168, 200, 0.5),
+      0 0 20px rgba(244, 168, 200, 0.3);
+  }
+
+  .text-glow-purple {
+    text-shadow: 0 0 10px rgba(155, 111, 212, 0.5),
+      0 0 20px rgba(155, 111, 212, 0.3);
+  }
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}

@@ -73,9 +73,12 @@ export default function HomePage() {
             <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-3 rounded-2xl bg-gradient-to-br from-eden-pink via-eden-holographic to-eden-purple flex items-center justify-center font-display text-2xl sm:text-3xl font-bold shadow-2xl shadow-eden-pink/20 animate-float">
               E
             </div>
-            <h1 className="font-display text-4xl sm:text-5xl holographic-text text-glow mb-2">
+            <h1 className="font-display text-4xl sm:text-5xl holographic-text text-glow mb-1">
               ÉDEN
             </h1>
+            <p className="font-display text-xs sm:text-sm uppercase tracking-[0.45em] text-eden-holographic/80 mb-2">
+              O Desabrochar
+            </p>
             <p className="text-base sm:text-lg text-white/60 font-light">
               Há cidades que dormem. Éden desperta.
             </p>

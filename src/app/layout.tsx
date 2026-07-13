@@ -19,10 +19,10 @@ const raleway = Raleway({
 });
 
 export const metadata: Metadata = {
-  title: "Éden — Roleplay Sobrenatural",
+  title: "Éden: O Desabrochar — Roleplay Sobrenatural",
   description:
     "Éden é um projeto de FiveM roleplay. Sua jornada em uma cidade misteriosa começa aqui.",
-  keywords: ["FiveM", "Roleplay", "Éden", "Vampiro", "Sobrenatural"],
+  keywords: ["FiveM", "Roleplay", "Éden", "O Desabrochar", "Vampiro", "Sobrenatural"],
 };
 
 export default function RootLayout({

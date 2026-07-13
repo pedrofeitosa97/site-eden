@@ -48,7 +48,9 @@ Entre postes piscando e vielas esquecidas, criaturas caminham sem precisar mais 
 
 No meio disso tudo, humanos ainda fingem que vivem, agarrados a rotinas frágeis, ignorando o que se esconde logo além da luz dos postes. Mas você… você sentiu, não sentiu? Aquela sensação incômoda, como se algo te observasse antes mesmo de você chegar.
 
-A cidade está diferente. Algo te chamou até aqui. E em Los Santos… nada chama sem cobrar um preço.`,
+A cidade está diferente. Algo te chamou até aqui. E em Los Santos… nada chama sem cobrar um preço.
+
+Éden: O Desabrochar.`,
       },
     ],
   },

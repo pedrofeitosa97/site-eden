@@ -120,6 +120,15 @@ export default function EntranceGate() {
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
+              transition={{ delay: 3, duration: 1 }}
+              className="font-display text-[11px] md:text-xs uppercase tracking-[0.5em] text-eden-holographic/70 mb-3"
+            >
+              O Desabrochar
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ delay: 1.2, duration: 0.5 }}
               className="text-white/40 text-sm mb-10"
             >

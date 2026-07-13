@@ -11,7 +11,7 @@ export default function Footer() {
             </div>
             <div>
               <p className="font-display text-sm holographic-text">ÉDEN</p>
-              <p className="text-xs text-white/40">Roleplay Sobrenatural</p>
+              <p className="text-xs text-white/40">O Desabrochar — Roleplay Sobrenatural</p>
             </div>
           </div>
 

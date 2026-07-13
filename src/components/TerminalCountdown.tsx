@@ -114,7 +114,7 @@ export default function TerminalCountdown({
         <span className="w-2.5 h-2.5 rounded-full bg-eden-purple/70" />
         <span className="w-2.5 h-2.5 rounded-full bg-eden-holographic/70" />
         <span className="ml-2 font-mono text-[10px] sm:text-xs text-white/35 truncate">
-          EDEN_OS v1.0 — transmissão_segura://inauguração
+          EDEN_OS v1.0 — transmissão_segura://o_desabrochar
         </span>
       </div>
 

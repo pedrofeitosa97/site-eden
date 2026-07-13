@@ -136,7 +136,18 @@ export default function TerminalCountdown({
             <span className="text-eden-pink/60">&gt;</span> abertura dos
             portões: <span className="capitalize">{targetLabel}</span> · 20:00
           </p>
+          <p className="text-white/50">
+            <span className="text-eden-pink/60">&gt;</span> contagem regressiva
+            iniciada… <span className="text-green-400/80">[ATIVA]</span>
+          </p>
         </div>
+
+        {/* título da contagem */}
+        {!launched && (
+          <p className="text-center font-mono text-[10px] sm:text-xs uppercase tracking-[0.3em] text-eden-pink/80 mb-4">
+            ⏳ faltam para a inauguração
+          </p>
+        )}
 
         {/* contagem regressiva */}
         {launched ? (
@@ -169,7 +180,9 @@ export default function TerminalCountdown({
         <div className="mt-6 flex items-center gap-1 text-[11px] sm:text-sm">
           <span className="text-eden-pink/60">&gt;</span>
           <span className="text-white/40">
-            {launched ? "conexão ativa" : "aguardando transmissão"}
+            {launched
+              ? "conexão ativa"
+              : "os portões abrem quando o contador zerar"}
           </span>
           <motion.span
             className="inline-block w-2 h-3.5 sm:h-4 bg-eden-pink/80 ml-1"

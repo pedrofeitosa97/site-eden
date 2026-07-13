@@ -25,9 +25,6 @@ export default function Footer() {
             <Link href="/loja" className="hover:text-eden-pink transition-colors">
               Loja
             </Link>
-            <Link href="/quiz" className="hover:text-eden-pink transition-colors">
-              Allowlist
-            </Link>
             <Link href="/links" className="hover:text-eden-pink transition-colors">
               Links
             </Link>

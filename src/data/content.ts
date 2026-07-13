@@ -12,14 +12,6 @@ export interface LoreSection {
   content: string;
 }
 
-export interface QuizQuestion {
-  id: string;
-  question: string;
-  options: string[];
-  correctIndex: number;
-  category: string;
-}
-
 export interface ShopItem {
   id: string;
   name: string;
@@ -181,119 +173,6 @@ Lores pessoais aprovadas pela staff serão exibidas nesta seção para inspirar 
   },
 ];
 
-export const quizQuestions: QuizQuestion[] = [
-  {
-    id: "q1",
-    question: "O que aconteceu com Los Santos que mudou tudo?",
-    options: [
-      "Uma guerra civil entre gangues",
-      "Algo foi acordado — o Despertar",
-      "Um terremoto destruiu a cidade",
-      "O governo declarou lei marcial",
-    ],
-    correctIndex: 1,
-    category: "Lore",
-  },
-  {
-    id: "q2",
-    question: "Qual é o papel das Forças Armadas no servidor?",
-    options: [
-      "Apenas decoração para o roleplay",
-      "Essenciais para organização e equilíbrio do ambiente",
-      "Controlar apenas o tráfego da cidade",
-      "Servir exclusivamente aos vampiros",
-    ],
-    correctIndex: 1,
-    category: "Regras",
-  },
-  {
-    id: "q3",
-    question: "O que é proibido durante o processo de ALLOWLIST?",
-    options: [
-      "Responder em inglês",
-      "Enviar links, imagens ou vídeos",
-      "Pedir ajuda a amigos",
-      "Usar mais de uma conta",
-    ],
-    correctIndex: 1,
-    category: "Allowlist",
-  },
-  {
-    id: "q4",
-    question: "Quantas tentativas você possui para ser aprovado na ALLOWLIST?",
-    options: ["1 tentativa", "2 tentativas", "3 tentativas", "Tentativas ilimitadas"],
-    correctIndex: 2,
-    category: "Allowlist",
-  },
-  {
-    id: "q5",
-    question: "Qual o tempo máximo para responder cada pergunta do quiz?",
-    options: ["2 minutos", "4 minutos", "10 minutos", "Sem limite de tempo"],
-    correctIndex: 1,
-    category: "Allowlist",
-  },
-  {
-    id: "q6",
-    question: "O que é RDM (Random Deathmatch)?",
-    options: [
-      "Matar alguém sem motivo de roleplay",
-      "Usar veículos como arma",
-      "Revelar informações secretas",
-      "Criar um personagem overpowered",
-    ],
-    correctIndex: 0,
-    category: "Regras",
-  },
-  {
-    id: "q7",
-    question: "O que significa 'Masquerade' no contexto sobrenatural?",
-    options: [
-      "Usar máscaras em eventos",
-      "Manter discrição sobre poderes em áreas públicas",
-      "Um tipo de vampiro ancião",
-      "A regra de não falar durante combate",
-    ],
-    correctIndex: 1,
-    category: "Regras",
-  },
-  {
-    id: "q8",
-    question: "Quem disputa território como 'reis decadentes' na lore?",
-    options: [
-      "As matilhas de lobisomens",
-      "Membros da corte vampírica",
-      "As Forças Armadas",
-      "Criaturas feéricas",
-    ],
-    correctIndex: 1,
-    category: "Lore",
-  },
-  {
-    id: "q9",
-    question: "O que acontece se você ultrapassar o tempo limite de uma pergunta?",
-    options: [
-      "Perde apenas aquela pergunta",
-      "Ganha tempo extra automaticamente",
-      "Precisa reiniciar todo o processo",
-      "Nada, o quiz continua normalmente",
-    ],
-    correctIndex: 2,
-    category: "Allowlist",
-  },
-  {
-    id: "q10",
-    question: "O que é a New Life Rule (NLR)?",
-    options: [
-      "Criar um novo personagem após ban",
-      "Esquecer eventos que levaram à sua morte",
-      "Renascer como outra raça sobrenatural",
-      "Recomeçar o quiz do zero",
-    ],
-    correctIndex: 1,
-    category: "Regras",
-  },
-];
-
 export const shopItems: ShopItem[] = [
   {
     id: "vip-basico",
@@ -393,16 +272,3 @@ export const socialLinks: SocialLink[] = [
     description: "Anúncios em tempo real e interação com a comunidade.",
   },
 ];
-
-export const allowlistInfo = {
-  maxAttempts: 3,
-  timePerQuestion: 240,
-  rules: [
-    "Leia todas as abas de lore e regras antes de iniciar",
-    "Cada resposta deve refletir seu entendimento sobre o universo da cidade",
-    "Não envie links, imagens ou vídeos — sua allowlist será cancelada",
-    "Você possui 3 tentativas para ser aprovado",
-    "Cada pergunta deve ser respondida em até 4 minutos",
-    "Caso o limite de tempo seja ultrapassado, reinicie todo o processo",
-  ],
-};

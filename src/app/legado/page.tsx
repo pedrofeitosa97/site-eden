@@ -553,12 +553,14 @@ export default function LegadoPage() {
                   <RotateCcw size={16} />
                   Consultar o Oráculo novamente
                 </button>
-                <Link
-                  href="/quiz"
+                <a
+                  href="https://discord.gg/eden"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="eden-button-primary px-6 py-3 w-full sm:w-auto text-center"
                 >
-                  Fazer a Allowlist
-                </Link>
+                  Entrar no Discord
+                </a>
               </motion.div>
             </motion.div>
           )}

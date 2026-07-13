@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import {
   BookOpen,
   ShoppingBag,
-  ClipboardCheck,
+  Eye,
   Link2,
   Shield,
   Moon,
@@ -34,11 +34,11 @@ const features = [
     color: "from-eden-purple to-eden-pink",
   },
   {
-    icon: ClipboardCheck,
-    title: "Allowlist",
+    icon: Eye,
+    title: "Legado Divino",
     description:
-      "Processo automatizado de entrada. Prove seu conhecimento sobre lore e regras.",
-    href: "/quiz",
+      "De qual deus do Olimpo você é filho? O Oráculo espera pela sua consulta.",
+    href: "/legado",
     color: "from-eden-holographic to-eden-purple",
   },
   {
@@ -97,12 +97,14 @@ export default function HomePage() {
             transition={{ delay: 0.6, duration: 0.6 }}
             className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <Link
-              href="/quiz"
+            <a
+              href="https://discord.gg/eden"
+              target="_blank"
+              rel="noopener noreferrer"
               className="eden-button-primary px-8 py-4 text-base sm:text-lg w-full sm:w-auto text-center"
             >
-              Iniciar Allowlist
-            </Link>
+              Entrar no Discord
+            </a>
             <Link
               href="/lore"
               className="eden-button px-8 py-4 text-base sm:text-lg w-full sm:w-auto text-center"
@@ -172,6 +174,16 @@ export default function HomePage() {
                   <p className="text-3xl font-display text-eden-pink mb-1">100%</p>
                   <p className="text-sm text-white/50">Automatizado</p>
                 </div>
+              </div>
+              <div className="text-center mt-8">
+                <a
+                  href="https://discord.gg/eden"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="eden-button-primary px-8 py-3 inline-block"
+                >
+                  Fazer Allowlist no Discord
+                </a>
               </div>
             </div>
           </GlassCard>
@@ -252,12 +264,14 @@ export default function HomePage() {
               Esteja preparado. Em Éden… nada chama sem cobrar um preço.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="/quiz"
+              <a
+                href="https://discord.gg/eden"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="eden-button-primary px-10 py-4 text-lg inline-block w-full sm:w-auto text-center"
               >
                 Começar Agora
-              </Link>
+              </a>
               <Link
                 href="/legado"
                 className="eden-button px-8 py-4 text-lg inline-block w-full sm:w-auto text-center"

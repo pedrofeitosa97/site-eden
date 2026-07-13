@@ -10,7 +10,6 @@ const navItems = [
   { href: "/lore", label: "Lore" },
   { href: "/legado", label: "Legado", mystic: true },
   { href: "/loja", label: "Loja" },
-  { href: "/quiz", label: "Allowlist" },
   { href: "/links", label: "Links" },
 ];
 

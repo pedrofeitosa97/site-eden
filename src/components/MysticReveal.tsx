@@ -108,7 +108,7 @@ export default function MysticReveal() {
           className="text-white/50 max-w-xl mx-auto mb-10 leading-relaxed"
         >
           O Despertar não escolheu Éden por acaso. O Oráculo sente algo em
-          você — oito perguntas separam você da verdade sobre o seu sangue.
+          você — doze perguntas separam você da verdade sobre o seu sangue.
         </motion.p>
 
         <motion.div

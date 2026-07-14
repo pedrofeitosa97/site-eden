@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { motion } from "framer-motion";
 
 /* próxima sexta-feira às 20:00 (se já passou a desta semana, pula pra seguinte) */
 function nextFriday20(): Date {
@@ -47,14 +46,12 @@ function Digit({ value, label }: { value: string; label: string }) {
 
 function Colon() {
   return (
-    <motion.span
-      className="font-mono text-xl sm:text-3xl md:text-4xl pb-3 sm:pb-5"
+    <span
+      className="font-mono text-xl sm:text-3xl md:text-4xl pb-3 sm:pb-5 animate-blink-soft"
       style={{ color: "rgba(244,168,200,0.6)" }}
-      animate={{ opacity: [1, 0.15, 1] }}
-      transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
     >
       :
-    </motion.span>
+    </span>
   );
 }
 
@@ -98,15 +95,13 @@ export default function TerminalCountdown({
     : "sexta-feira";
 
   return (
-    <motion.div
+    <div
       className={`relative rounded-xl overflow-hidden border border-eden-pink/25 text-left ${className}`}
       style={{
         background: "linear-gradient(180deg, #0c0812 0%, #080510 100%)",
         boxShadow:
           "0 0 40px rgba(244,168,200,0.12), 0 0 120px rgba(155,111,212,0.08), inset 0 0 80px rgba(0,0,0,0.6)",
       }}
-      animate={{ opacity: [1, 0.985, 1, 0.99, 1] }}
-      transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
     >
       {/* barra de título */}
       <div className="flex items-center gap-2 px-4 py-2 border-b border-eden-pink/15 bg-white/[0.02]">
@@ -152,14 +147,12 @@ export default function TerminalCountdown({
         {/* contagem regressiva */}
         {launched ? (
           <div className="text-center py-3">
-            <motion.p
-              className="font-mono text-lg sm:text-2xl uppercase tracking-[0.2em]"
-              style={glowText}
-              animate={{ opacity: [1, 0.5, 1] }}
-              transition={{ duration: 1.2, repeat: Infinity }}
+            <p
+              className="font-mono text-lg sm:text-2xl uppercase tracking-[0.2em] animate-pulse-glow"
+              style={{ ...glowText, animationDuration: "1.2s" }}
             >
               ▓ Portões abertos ▓
-            </motion.p>
+            </p>
             <p className="mt-2 font-mono text-xs text-white/40">
               &gt; Éden espera por você.
             </p>
@@ -184,16 +177,7 @@ export default function TerminalCountdown({
               ? "conexão ativa"
               : "os portões abrem quando o contador zerar"}
           </span>
-          <motion.span
-            className="inline-block w-2 h-3.5 sm:h-4 bg-eden-pink/80 ml-1"
-            animate={{ opacity: [1, 1, 0, 0] }}
-            transition={{
-              duration: 1.1,
-              repeat: Infinity,
-              ease: "linear",
-              times: [0, 0.5, 0.5, 1],
-            }}
-          />
+          <span className="inline-block w-2 h-3.5 sm:h-4 bg-eden-pink/80 ml-1 animate-caret" />
         </div>
 
         {/* scanlines do CRT */}
@@ -213,6 +197,6 @@ export default function TerminalCountdown({
           }}
         />
       </div>
-    </motion.div>
+    </div>
   );
 }

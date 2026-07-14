@@ -28,6 +28,10 @@ const config: Config = {
         float: "float 6s ease-in-out infinite",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
         hologram: "hologram 4s linear infinite",
+        caret: "caret 1.1s linear infinite",
+        "blink-soft": "blink-soft 1s ease-in-out infinite",
+        drift: "drift 2s ease-in-out infinite",
+        "fade-pulse": "fade-pulse 4s ease-in-out infinite",
       },
       keyframes: {
         shimmer: {
@@ -45,6 +49,22 @@ const config: Config = {
         hologram: {
           "0%": { backgroundPosition: "0% 0%" },
           "100%": { backgroundPosition: "200% 200%" },
+        },
+        caret: {
+          "0%, 49.9%": { opacity: "1" },
+          "50%, 100%": { opacity: "0" },
+        },
+        "blink-soft": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.15" },
+        },
+        drift: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(8px)" },
+        },
+        "fade-pulse": {
+          "0%, 100%": { opacity: "0.2" },
+          "50%": { opacity: "0.6" },
         },
       },
       backgroundImage: {

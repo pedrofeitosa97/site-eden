@@ -124,20 +124,12 @@ export default function HomePage() {
           transition={{ delay: 1.2, duration: 1 }}
           className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
         >
-          <motion.p
-            animate={{ opacity: [0.2, 0.6, 0.2] }}
-            transition={{ repeat: Infinity, duration: 4 }}
-            className="text-[11px] uppercase tracking-[0.35em] text-eden-pink/50"
-          >
+          <p className="text-[11px] uppercase tracking-[0.35em] text-eden-pink/50 animate-fade-pulse">
             desça, se tiver coragem
-          </motion.p>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}
-            className="w-6 h-10 rounded-full border-2 border-white/20 flex items-start justify-center p-2"
-          >
+          </p>
+          <div className="w-6 h-10 rounded-full border-2 border-white/20 flex items-start justify-center p-2 animate-drift">
             <div className="w-1 h-2 bg-eden-pink rounded-full" />
-          </motion.div>
+          </div>
         </motion.div>
       </section>
 

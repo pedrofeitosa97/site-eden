@@ -32,6 +32,8 @@ const config: Config = {
         "blink-soft": "blink-soft 1s ease-in-out infinite",
         drift: "drift 2s ease-in-out infinite",
         "fade-pulse": "fade-pulse 4s ease-in-out infinite",
+        particle: "particle 4s ease-in-out infinite",
+        sweep: "sweep 5.5s ease-in-out infinite",
       },
       keyframes: {
         shimmer: {
@@ -65,6 +67,15 @@ const config: Config = {
         "fade-pulse": {
           "0%, 100%": { opacity: "0.2" },
           "50%": { opacity: "0.6" },
+        },
+        particle: {
+          "0%": { opacity: "0", transform: "translateY(0px)" },
+          "50%": { opacity: "0.9" },
+          "100%": { opacity: "0", transform: "translateY(-14px)" },
+        },
+        sweep: {
+          "0%": { transform: "translateX(-140%)" },
+          "64%, 100%": { transform: "translateX(440%)" },
         },
       },
       backgroundImage: {

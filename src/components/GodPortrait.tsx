@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
   Zap,
   Waves,
@@ -49,26 +48,26 @@ export default function GodPortrait({
       aria-label={`Retrato de ${god.name}`}
     >
       {/* anel externo girando */}
-      <motion.div
-        className="absolute inset-0 rounded-full"
+      <div
+        className={`absolute inset-0 rounded-full ${
+          animate ? "animate-[spin_16s_linear_infinite]" : ""
+        }`}
         style={{
           border: "1px solid rgba(255,255,255,0.08)",
           borderTopColor: god.colors.from,
           borderBottomColor: god.colors.to,
         }}
-        animate={animate ? { rotate: 360 } : undefined}
-        transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
       />
 
       {/* anel intermediário girando ao contrário */}
-      <motion.div
-        className="absolute rounded-full"
+      <div
+        className={`absolute rounded-full ${
+          animate ? "animate-[spin_24s_linear_infinite_reverse]" : ""
+        }`}
         style={{
           inset: size * 0.06,
           border: "1px dashed rgba(255,255,255,0.12)",
         }}
-        animate={animate ? { rotate: -360 } : undefined}
-        transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
       />
 
       {/* medalhão */}
@@ -88,14 +87,16 @@ export default function GodPortrait({
       </div>
 
       {/* brilho pulsante */}
-      <motion.div
-        className="absolute rounded-full pointer-events-none"
+      <div
+        className={`absolute rounded-full pointer-events-none ${
+          animate ? "animate-pulse-glow" : ""
+        }`}
         style={{
           inset: size * 0.12,
           boxShadow: `0 0 ${size * 0.45}px ${god.colors.glow}`,
+          opacity: animate ? undefined : 0.4,
+          animationDuration: "3.5s",
         }}
-        animate={animate ? { opacity: [0.4, 0.9, 0.4] } : undefined}
-        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
       />
     </div>
   );

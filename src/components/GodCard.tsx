@@ -113,35 +113,31 @@ export default function GodCard({ god }: { god: God }) {
           }}
         />
 
-        {/* raios girando atrás do medalhão */}
-        <motion.div
-          className="absolute left-1/2 top-[38%] -translate-x-1/2 -translate-y-1/2 w-56 h-56 pointer-events-none"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-          style={{
+        {/* raios girando atrás do medalhão — o wrapper centraliza, o filho gira,
+            porque o keyframe de spin sobrescreveria o translate de centralização */}
+        <div className="absolute left-1/2 top-[38%] -translate-x-1/2 -translate-y-1/2 w-56 h-56 pointer-events-none">
+          <div
+            className="w-full h-full animate-[spin_40s_linear_infinite]"
+            style={{
             background: `conic-gradient(from 0deg, transparent 0deg, ${god.colors.from}18 12deg, transparent 24deg, transparent 40deg, ${god.colors.from}18 52deg, transparent 64deg, transparent 90deg, ${god.colors.from}18 102deg, transparent 114deg, transparent 140deg, ${god.colors.from}18 152deg, transparent 164deg, transparent 190deg, ${god.colors.from}18 202deg, transparent 214deg, transparent 240deg, ${god.colors.from}18 252deg, transparent 264deg, transparent 290deg, ${god.colors.from}18 302deg, transparent 314deg, transparent 340deg, ${god.colors.from}18 352deg, transparent 360deg)`,
-            borderRadius: "50%",
-          }}
-        />
+              borderRadius: "50%",
+            }}
+          />
+        </div>
 
         {/* partículas */}
         {particles.map((p, i) => (
-          <motion.div
+          <div
             key={i}
-            className="absolute rounded-full pointer-events-none"
+            className="absolute rounded-full pointer-events-none animate-particle opacity-0"
             style={{
               left: `${p.left}%`,
               top: `${p.top}%`,
               width: p.size,
               height: p.size,
               backgroundColor: god.colors.from,
-            }}
-            animate={{ opacity: [0, 0.9, 0], y: [0, -14] }}
-            transition={{
-              duration: p.duration,
-              delay: p.delay,
-              repeat: Infinity,
-              ease: "easeInOut",
+              animationDuration: `${p.duration}s`,
+              animationDelay: `${p.delay}s`,
             }}
           />
         ))}
@@ -159,22 +155,18 @@ export default function GodCard({ god }: { god: God }) {
 
         {/* medalhão central */}
         <div className="relative flex items-center justify-center my-5">
-          <motion.div
-            className="absolute w-40 h-40 rounded-full"
+          <div
+            className="absolute w-40 h-40 rounded-full animate-[spin_22s_linear_infinite]"
             style={{ border: `1px solid ${god.colors.from}40` }}
-            animate={{ rotate: 360 }}
-            transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
           >
             <div
               className="absolute -top-1 left-1/2 w-2 h-2 rounded-full"
               style={{ backgroundColor: god.colors.from }}
             />
-          </motion.div>
-          <motion.div
-            className="absolute w-[8.5rem] h-[8.5rem] rounded-full"
+          </div>
+          <div
+            className="absolute w-[8.5rem] h-[8.5rem] rounded-full animate-[spin_30s_linear_infinite_reverse]"
             style={{ border: `1px dashed ${god.colors.from}30` }}
-            animate={{ rotate: -360 }}
-            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
           />
           <div
             className="relative w-28 h-28 rounded-full flex items-center justify-center"
@@ -217,15 +209,13 @@ export default function GodCard({ god }: { god: God }) {
           <Meander color={god.colors.from} />
         </div>
 
-        {/* brilho varrendo a carta */}
-        <motion.div
-          className="absolute inset-y-0 w-24 pointer-events-none"
+        {/* brilho varrendo a carta — via transform, animar `left` força layout a cada frame */}
+        <div
+          className="absolute inset-y-0 left-0 w-24 pointer-events-none animate-sweep"
           style={{
             background:
               "linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.07) 50%, transparent 100%)",
           }}
-          animate={{ left: ["-30%", "130%"] }}
-          transition={{ duration: 3.5, repeat: Infinity, repeatDelay: 2, ease: "easeInOut" }}
         />
       </div>
     </motion.div>

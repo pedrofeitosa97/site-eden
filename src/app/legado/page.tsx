@@ -151,13 +151,12 @@ export default function LegadoPage() {
               exit={{ opacity: 0, y: -20 }}
             >
               <GlassCard className="p-6 sm:p-8 md:p-12 text-center" hover={false} reveal={false}>
-                <motion.div
-                  animate={{ opacity: [0.6, 1, 0.6] }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                  className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-eden-purple/10 border border-eden-purple/30 mb-6"
+                <div
+                  className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-eden-purple/10 border border-eden-purple/30 mb-6 animate-pulse-glow"
+                  style={{ animationDuration: "4s" }}
                 >
                   <Eye className="text-eden-holographic" size={28} />
-                </motion.div>
+                </div>
 
                 <h2 className="font-display text-2xl md:text-3xl text-white mb-4">
                   O Oráculo sente algo em você.
@@ -349,34 +348,24 @@ export default function LegadoPage() {
               className="flex flex-col items-center justify-center py-20 text-center"
             >
               <div className="relative w-32 h-32 mb-10">
-                <motion.div
-                  className="absolute inset-0 rounded-full border border-eden-pink/40"
-                  animate={{ rotate: 360, scale: [1, 1.1, 1] }}
-                  transition={{
-                    rotate: { duration: 4, repeat: Infinity, ease: "linear" },
-                    scale: { duration: 2, repeat: Infinity, ease: "easeInOut" },
-                  }}
+                <div
+                  className="absolute inset-0 rounded-full border border-eden-pink/40 animate-[spin_4s_linear_infinite]"
                   style={{ borderTopColor: "#f4a8c8" }}
                 />
-                <motion.div
-                  className="absolute inset-3 rounded-full border border-eden-purple/40"
-                  animate={{ rotate: -360 }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                <div
+                  className="absolute inset-3 rounded-full border border-eden-purple/40 animate-[spin_3s_linear_infinite_reverse]"
                   style={{ borderBottomColor: "#9b6fd4" }}
                 />
-                <motion.div
-                  className="absolute inset-6 rounded-full border border-eden-holographic/40"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                <div
+                  className="absolute inset-6 rounded-full border border-eden-holographic/40 animate-[spin_2s_linear_infinite]"
                   style={{ borderLeftColor: "#e8b4f8" }}
                 />
-                <motion.div
-                  className="absolute inset-0 flex items-center justify-center"
-                  animate={{ opacity: [0.4, 1, 0.4] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
+                <div
+                  className="absolute inset-0 flex items-center justify-center animate-pulse-glow"
+                  style={{ animationDuration: "1.5s" }}
                 >
                   <Eye className="text-eden-holographic" size={32} />
-                </motion.div>
+                </div>
               </div>
 
               {["O Oráculo está lendo o seu sangue…", "Os deuses sussurram o seu nome…"].map(

@@ -143,6 +143,37 @@ export default function BackgroundEffects() {
           </div>
         ))}
 
+        {/* cometa — cruza o céu 12s depois da página abrir */}
+        <motion.div
+          className="absolute left-[-12%] top-[10%]"
+          initial={{ x: 0, y: 0, opacity: 0 }}
+          animate={{ x: "125vw", y: "24vh", opacity: [0, 1, 1, 0] }}
+          transition={{ delay: 12, duration: 2.4, ease: "linear", times: [0, 0.12, 0.85, 1] }}
+        >
+          <div
+            className="relative"
+            style={{ transform: "rotate(11deg)" }}
+          >
+            {/* cauda */}
+            <div
+              className="h-[2px] w-40 md:w-56"
+              style={{
+                background:
+                  "linear-gradient(to right, transparent, rgba(244,168,200,0.5) 60%, #ffd7e8 100%)",
+              }}
+            />
+            {/* cabeça */}
+            <div
+              className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full"
+              style={{
+                background: "#fff",
+                boxShadow:
+                  "0 0 8px rgba(255,255,255,0.9), 0 0 20px rgba(244,168,200,0.8), 0 0 36px rgba(155,111,212,0.5)",
+              }}
+            />
+          </div>
+        </motion.div>
+
         {/* lua */}
         <motion.div
           className="absolute right-[8%] top-0"

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { godQuizQuestions } from "@/data/gods";
 
 const whispers = [
   "algo desperta quando você se aproxima…",
@@ -108,7 +109,8 @@ export default function MysticReveal() {
           className="text-white/50 max-w-xl mx-auto mb-10 leading-relaxed"
         >
           O Despertar não escolheu Éden por acaso. O Oráculo sente algo em
-          você — doze perguntas separam você da verdade sobre o seu sangue.
+          você — {godQuizQuestions.length} perguntas separam você da verdade
+          sobre o seu sangue.
         </motion.p>
 
         <motion.div

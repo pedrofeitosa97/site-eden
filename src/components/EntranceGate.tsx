@@ -49,14 +49,13 @@ export default function EntranceGate() {
         >
           {/* brilho de fundo */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <motion.div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-3xl"
+            <div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-3xl animate-pulse-glow"
               style={{
                 background:
                   "radial-gradient(circle, rgba(155,111,212,0.15) 0%, rgba(244,168,200,0.08) 40%, transparent 70%)",
+                animationDuration: "5s",
               }}
-              animate={{ scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             />
           </div>
 
@@ -69,18 +68,14 @@ export default function EntranceGate() {
               className="mb-10 inline-block"
             >
               <div className="relative w-20 h-20 mx-auto">
-                <motion.div
-                  className="absolute inset-0 rounded-full border border-eden-pink/30"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                <div
+                  className="absolute inset-0 rounded-full border border-eden-pink/30 animate-[spin_20s_linear_infinite]"
                   style={{
                     borderTopColor: "rgba(244,168,200,0.8)",
                   }}
                 />
-                <motion.div
-                  className="absolute inset-2 rounded-full border border-eden-purple/30"
-                  animate={{ rotate: -360 }}
-                  transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
+                <div
+                  className="absolute inset-2 rounded-full border border-eden-purple/30 animate-[spin_14s_linear_infinite_reverse]"
                   style={{
                     borderBottomColor: "rgba(155,111,212,0.8)",
                   }}
@@ -98,7 +93,7 @@ export default function EntranceGate() {
                   key={line}
                   initial={{ opacity: 0, filter: "blur(6px)" }}
                   animate={{ opacity: 1, filter: "blur(0px)" }}
-                  transition={{ delay: 0.3 + i * 0.35, duration: 0.5 }}
+                  transition={{ delay: 0.15 + i * 0.2, duration: 0.4 }}
                   className="text-white/40 text-sm md:text-base italic tracking-widest"
                 >
                   {line}
@@ -110,7 +105,7 @@ export default function EntranceGate() {
             <motion.h1
               initial={{ opacity: 0, y: 24, filter: "blur(10px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ delay: 0.9, duration: 0.6, ease: "easeOut" }}
+              transition={{ delay: 0.25, duration: 0.5, ease: "easeOut" }}
               className="font-display text-3xl md:text-5xl text-white mb-3 leading-tight"
             >
               Você está preparado para{" "}
@@ -120,7 +115,7 @@ export default function EntranceGate() {
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 3, duration: 1 }}
+              transition={{ delay: 1.2, duration: 1 }}
               className="font-display text-[11px] md:text-xs uppercase tracking-[0.5em] text-eden-holographic/70 mb-3"
             >
               O Desabrochar
@@ -129,7 +124,7 @@ export default function EntranceGate() {
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1.2, duration: 0.5 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
               className="text-white/40 text-sm mb-10"
             >
               Em Éden… nada chama sem cobrar um preço.
@@ -138,7 +133,7 @@ export default function EntranceGate() {
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.4, duration: 0.5 }}
+              transition={{ delay: 0.7, duration: 0.5 }}
             >
               <button
                 onClick={cross}
@@ -149,14 +144,12 @@ export default function EntranceGate() {
               </button>
             </motion.div>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: [0, 0.35, 0.15, 0.35] }}
-              transition={{ delay: 2, duration: 4, repeat: Infinity }}
-              className="mt-8 text-xs text-eden-pink/40 tracking-[0.3em] uppercase"
+            <p
+              className="mt-8 text-xs text-eden-pink/40 tracking-[0.3em] uppercase animate-fade-pulse"
+              style={{ opacity: 0.2, animationDelay: "1.5s" }}
             >
               algo te observa
-            </motion.p>
+            </p>
           </div>
         </motion.div>
       )}

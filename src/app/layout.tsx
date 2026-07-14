@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Cinzel, Raleway } from "next/font/google";
+import { Marcellus, Raleway } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import VideoBackground from "@/components/VideoBackground";
 import EntranceGate from "@/components/EntranceGate";
 
-const cinzel = Cinzel({
+const marcellus = Marcellus({
   subsets: ["latin"],
+  weight: "400",
   variable: "--font-display",
   display: "swap",
 });
@@ -31,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={`${cinzel.variable} ${raleway.variable}`}>
+    <html lang="pt-BR" className={`${marcellus.variable} ${raleway.variable}`}>
       <body className="font-body">
         <EntranceGate />
         <VideoBackground />

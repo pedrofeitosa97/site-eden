@@ -3,7 +3,7 @@ import { Cinzel, Raleway } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import BackgroundEffects from "@/components/BackgroundEffects";
+import VideoBackground from "@/components/VideoBackground";
 import EntranceGate from "@/components/EntranceGate";
 
 const cinzel = Cinzel({
@@ -34,7 +34,7 @@ export default function RootLayout({
     <html lang="pt-BR" className={`${cinzel.variable} ${raleway.variable}`}>
       <body className="font-body">
         <EntranceGate />
-        <BackgroundEffects />
+        <VideoBackground />
         <Navbar />
         <main className="min-h-screen pt-20">{children}</main>
         <Footer />

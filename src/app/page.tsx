@@ -117,12 +117,13 @@ export default function HomePage() {
           </motion.div>
         </div>
 
-        {/* convite para descer */}
+        {/* convite para descer — no fluxo no mobile (senão sobrepõe os botões),
+            absoluto no rodapé do hero em telas maiores */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 1 }}
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+          className="mt-14 sm:mt-0 sm:absolute sm:bottom-6 sm:inset-x-0 flex flex-col items-center gap-3"
         >
           <p className="text-[11px] uppercase tracking-[0.35em] text-eden-pink/50 animate-fade-pulse">
             desça, se tiver coragem

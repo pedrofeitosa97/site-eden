@@ -121,8 +121,11 @@
     border-radius: inherit;
   }
 
+  /* sem backdrop-filter: desfocar o fundo animado a cada frame derruba o FPS;
+     um fundo translúcido escuro mantém o mesmo visual de vidro */
   .glass-card {
-    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-xl;
+    @apply border border-white/10 rounded-xl;
+    background: rgba(20, 16, 30, 0.75);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
       inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
@@ -132,7 +135,8 @@
   }
 
   .glass-card-hover:hover {
-    @apply bg-white/10 border-eden-pink/30;
+    @apply border-eden-pink/30;
+    background: rgba(30, 24, 44, 0.82);
     box-shadow: 0 8px 32px rgba(244, 168, 200, 0.1),
       inset 0 1px 0 rgba(255, 255, 255, 0.1);
     transform: translateY(-2px);

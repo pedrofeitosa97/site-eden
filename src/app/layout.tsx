@@ -3,7 +3,7 @@ import { Marcellus, Raleway } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import VideoBackground from "@/components/VideoBackground";
+import BackgroundEffects from "@/components/BackgroundEffects";
 import EntranceGate from "@/components/EntranceGate";
 
 const marcellus = Marcellus({
@@ -35,7 +35,7 @@ export default function RootLayout({
     <html lang="pt-BR" className={`${marcellus.variable} ${raleway.variable}`}>
       <body className="font-body">
         <EntranceGate />
-        <VideoBackground />
+        <BackgroundEffects />
         <Navbar />
         <main className="min-h-screen pt-20">{children}</main>
         <Footer />

@@ -8,36 +8,70 @@ function rand(i: number, seed: number) {
   return x - Math.floor(x);
 }
 
-/* gera uma fileira de pinheiros como paths SVG */
-function treeline(seed: number, maxHeight: number, minHeight: number) {
-  const paths: string[] = [];
+/* desenha um retângulo centrado em cx como sub-path */
+function block(cx: number, w: number, yBottom: number, yTop: number) {
+  return `M ${cx - w / 2} ${yBottom} L ${cx - w / 2} ${yTop} L ${cx + w / 2} ${yTop} L ${cx + w / 2} ${yBottom} Z `;
+}
+
+/* skyline denso estilo Manhattan: torres escalonadas, espigões e água-torres */
+function skyline(seed: number, maxHeight: number, minHeight: number) {
+  let buildings = "";
+  const windows: string[] = [];
   const baseY = 200;
   let x = -20;
   let i = 0;
 
   while (x < 1220) {
-    const w = 34 + rand(i, seed) * 40;
+    const w = 26 + rand(i, seed) * 42;
     const h = minHeight + rand(i + 50, seed) * (maxHeight - minHeight);
     const cx = x + w / 2;
+    const kind = rand(i + 300, seed);
+    const tall = h > minHeight + (maxHeight - minHeight) * 0.6;
 
-    paths.push(
-      `M ${cx} ${baseY - h}` +
-        ` L ${cx + w * 0.34} ${baseY - h * 0.6} L ${cx + w * 0.18} ${baseY - h * 0.6}` +
-        ` L ${cx + w * 0.48} ${baseY - h * 0.28} L ${cx + w * 0.28} ${baseY - h * 0.28}` +
-        ` L ${cx + w * 0.62} ${baseY} L ${cx - w * 0.62} ${baseY}` +
-        ` L ${cx - w * 0.28} ${baseY - h * 0.28} L ${cx - w * 0.48} ${baseY - h * 0.28}` +
-        ` L ${cx - w * 0.18} ${baseY - h * 0.6} L ${cx - w * 0.34} ${baseY - h * 0.6} Z`
-    );
+    /* corpo do prédio: reto ou escalonado (setbacks art déco) */
+    let windowTop = baseY - h;
+    let windowW = w;
+    if (kind > 0.55) {
+      buildings += block(cx, w, baseY, baseY - h * 0.55);
+      buildings += block(cx, w * 0.72, baseY - h * 0.55, baseY - h * 0.82);
+      buildings += block(cx, w * 0.44, baseY - h * 0.82, baseY - h);
+      windowTop = baseY - h * 0.55;
+    } else {
+      buildings += block(cx, w, baseY, baseY - h);
+    }
 
-    x += w * (0.55 + rand(i + 100, seed) * 0.3);
+    /* coroamento: espigão nas torres altas, antena ou caixa d'água nas demais */
+    if (tall && kind > 0.55) {
+      buildings += block(cx, 1.6, baseY - h, baseY - h - 10 - rand(i + 380, seed) * 18);
+    } else if (kind > 0.8) {
+      buildings += block(cx, 1.6, baseY - h, baseY - h - 6 - rand(i + 380, seed) * 10);
+    } else if (kind < 0.2 && w > 34) {
+      const bx = cx + (rand(i + 360, seed) - 0.5) * w * 0.4;
+      buildings += block(bx, w * 0.22, baseY - h, baseY - h - 7);
+    }
+
+    /* janelas acesas — Manhattan de madrugada, muita luz */
+    const cols = Math.floor(windowW / 9);
+    const rows = Math.floor((baseY - windowTop) / 11);
+    for (let c = 0; c < cols; c++) {
+      for (let r = 0; r < rows; r++) {
+        if (rand(i * 37 + c * 7 + r * 13, seed + 5) < 0.26) {
+          const wx = cx - windowW / 2 + 3.5 + c * 9;
+          const wy = windowTop + 5 + r * 11;
+          windows.push(`M ${wx} ${wy} h 2.8 v 4 h -2.8 Z`);
+        }
+      }
+    }
+
+    x += w + 1 + rand(i + 100, seed) * 6;
     i++;
   }
 
-  return paths.join(" ");
+  return { buildings, windows: windows.join(" ") };
 }
 
-const backTrees = treeline(7, 185, 90);
-const frontTrees = treeline(23, 130, 55);
+const backCity = skyline(7, 192, 95);
+const frontCity = skyline(23, 135, 50);
 
 const stars = Array.from({ length: 70 }, (_, i) => ({
   left: rand(i, 3) * 100,
@@ -158,35 +192,37 @@ export default function BackgroundEffects() {
           </motion.div>
         </motion.div>
 
-        {/* névoa acima da floresta */}
+        {/* poluição luminosa — o brilho da cidade no horizonte */}
         <motion.div
           className="absolute bottom-0 left-0 right-0 h-72"
           style={{
             opacity: mistOpacity,
             background:
-              "linear-gradient(to top, rgba(155, 111, 212, 0.1) 0%, rgba(155, 111, 212, 0.04) 40%, transparent 100%)",
+              "linear-gradient(to top, rgba(244, 168, 200, 0.09) 0%, rgba(155, 111, 212, 0.05) 40%, transparent 100%)",
           }}
         />
 
-        {/* floresta — camada de trás */}
+        {/* skyline — camada de trás */}
         <svg
-          className="absolute bottom-0 left-0 w-full h-44 md:h-60"
+          className="absolute bottom-0 left-0 w-full h-52 md:h-72"
           viewBox="0 0 1200 200"
           preserveAspectRatio="none"
           aria-hidden="true"
         >
-          <path d={backTrees} fill="#100b1c" />
+          <path d={backCity.buildings} fill="#100b1c" />
+          <path d={backCity.windows} fill="rgba(155, 111, 212, 0.35)" />
           <rect x="0" y="196" width="1200" height="4" fill="#100b1c" />
         </svg>
 
-        {/* floresta — camada da frente */}
+        {/* skyline — camada da frente */}
         <svg
-          className="absolute bottom-0 left-0 w-full h-32 md:h-44"
+          className="absolute bottom-0 left-0 w-full h-36 md:h-52"
           viewBox="0 0 1200 200"
           preserveAspectRatio="none"
           aria-hidden="true"
         >
-          <path d={frontTrees} fill="#06040c" />
+          <path d={frontCity.buildings} fill="#06040c" />
+          <path d={frontCity.windows} fill="rgba(244, 168, 200, 0.45)" />
           <rect x="0" y="192" width="1200" height="8" fill="#06040c" />
         </svg>
 

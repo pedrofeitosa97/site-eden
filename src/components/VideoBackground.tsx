@@ -1,6 +1,6 @@
 "use client";
 
-const VIDEO_ID = "-hWCZcl2VxE";
+const VIDEO_ID = "BpmWTyKt3hk";
 
 /* embed mudo, em loop e sem controles — só a imagem do vídeo */
 const EMBED_URL =

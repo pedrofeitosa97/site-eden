@@ -78,14 +78,6 @@ export default function TerminalCountdown({
   const minutes = Math.floor((remaining % 3600000) / 60000);
   const seconds = Math.floor((remaining % 60000) / 1000);
 
-  const clock = mounted
-    ? now.toLocaleTimeString("pt-BR", {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-      })
-    : "--:--:--";
-
   const targetLabel = mounted
     ? target.toLocaleDateString("pt-BR", {
         weekday: "long",
@@ -109,38 +101,16 @@ export default function TerminalCountdown({
         <span className="w-2.5 h-2.5 rounded-full bg-eden-purple/70" />
         <span className="w-2.5 h-2.5 rounded-full bg-eden-holographic/70" />
         <span className="ml-2 font-mono text-[10px] sm:text-xs text-white/35 truncate">
-          EDEN_OS v1.0 — transmissão_segura://o_desabrochar
+          EDEN_OS — o_desabrochar
         </span>
       </div>
 
       {/* corpo */}
-      <div className="relative px-4 sm:px-8 py-5 sm:py-6 font-mono">
-        {/* log do terminal */}
-        <div className="space-y-1 text-[11px] sm:text-sm mb-6">
-          <p className="text-eden-holographic/70">
-            <span className="text-eden-pink/60">&gt;</span> uplink estabelecido
-            com Éden… <span className="text-green-400/80">[OK]</span>
-          </p>
-          <p className="text-white/50">
-            <span className="text-eden-pink/60">&gt;</span> horário local:{" "}
-            <span className="tabular-nums" style={glowText}>
-              {clock}
-            </span>
-          </p>
-          <p className="text-white/50">
-            <span className="text-eden-pink/60">&gt;</span> abertura dos
-            portões: <span className="capitalize">{targetLabel}</span> · 20:00
-          </p>
-          <p className="text-white/50">
-            <span className="text-eden-pink/60">&gt;</span> contagem regressiva
-            iniciada… <span className="text-green-400/80">[ATIVA]</span>
-          </p>
-        </div>
-
+      <div className="relative px-4 sm:px-8 py-6 sm:py-8 font-mono">
         {/* título da contagem */}
         {!launched && (
-          <p className="text-center font-mono text-[10px] sm:text-xs uppercase tracking-[0.3em] text-eden-pink/80 mb-4">
-            ⏳ faltam para a inauguração
+          <p className="text-center font-mono text-[10px] sm:text-xs uppercase tracking-[0.3em] text-eden-pink/80 mb-5">
+            faltam para a inauguração
           </p>
         )}
 
@@ -170,12 +140,16 @@ export default function TerminalCountdown({
         )}
 
         {/* rodapé com cursor */}
-        <div className="mt-6 flex items-center gap-1 text-[11px] sm:text-sm">
+        <div className="mt-6 flex items-center justify-center gap-1 text-[11px] sm:text-sm">
           <span className="text-eden-pink/60">&gt;</span>
           <span className="text-white/40">
-            {launched
-              ? "conexão ativa"
-              : "os portões abrem quando o contador zerar"}
+            {launched ? (
+              "conexão ativa"
+            ) : (
+              <>
+                <span className="capitalize">{targetLabel}</span> · 20:00
+              </>
+            )}
           </span>
           <span className="inline-block w-2 h-3.5 sm:h-4 bg-eden-pink/80 ml-1 animate-caret" />
         </div>

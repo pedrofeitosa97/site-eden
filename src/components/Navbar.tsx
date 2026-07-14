@@ -39,7 +39,6 @@ export default function Navbar() {
             <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-eden-pink to-eden-purple flex items-center justify-center font-display font-bold text-lg group-hover:shadow-lg group-hover:shadow-eden-pink/20 transition-shadow">
               E
             </div>
-            <span className="font-display text-xl holographic-text">ÉDEN</span>
           </Link>
 
           <div className="hidden md:flex items-center gap-1">

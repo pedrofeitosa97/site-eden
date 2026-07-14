@@ -43,9 +43,15 @@ const stars = Array.from({ length: 70 }, (_, i) => ({
   left: rand(i, 3) * 100,
   top: rand(i + 200, 3) * 55,
   size: 1 + rand(i + 400, 3) * 1.6,
-  duration: 2.5 + rand(i + 600, 3) * 4,
-  delay: rand(i + 800, 3) * 5,
   opacity: 0.25 + rand(i + 999, 3) * 0.5,
+}));
+
+/* 3 camadas que piscam em ritmos diferentes — 3 animações no total
+   em vez de uma por estrela, que era o que derrubava o FPS */
+const starLayers = [0, 1, 2].map((layer) => ({
+  duration: 3.2 + layer * 1.4,
+  delay: layer * 1.1,
+  stars: stars.filter((_, i) => i % 3 === layer),
 }));
 
 export default function BackgroundEffects() {
@@ -78,20 +84,29 @@ export default function BackgroundEffects() {
         />
 
         {/* estrelas */}
-        {stars.map((s, i) => (
+        {starLayers.map((layer, l) => (
           <div
-            key={i}
-            className="absolute rounded-full bg-white animate-pulse-glow"
+            key={l}
+            className="absolute inset-0 animate-pulse-glow"
             style={{
-              left: `${s.left}%`,
-              top: `${s.top}%`,
-              width: s.size,
-              height: s.size,
-              opacity: s.opacity,
-              animationDuration: `${s.duration}s`,
-              animationDelay: `${s.delay}s`,
+              animationDuration: `${layer.duration}s`,
+              animationDelay: `${layer.delay}s`,
             }}
-          />
+          >
+            {layer.stars.map((s, i) => (
+              <div
+                key={i}
+                className="absolute rounded-full bg-white"
+                style={{
+                  left: `${s.left}%`,
+                  top: `${s.top}%`,
+                  width: s.size,
+                  height: s.size,
+                  opacity: s.opacity,
+                }}
+              />
+            ))}
+          </div>
         ))}
 
         {/* lua */}

@@ -415,7 +415,7 @@ export default function LegadoPage() {
                     </span>
                     <span className="text-sm text-white/50">
                       de chance de você ser{" "}
-                      {["atena", "afrodite", "artemis"].includes(primary.god.id)
+                      {["atena", "afrodite", "artemis", "hera", "demeter"].includes(primary.god.id)
                         ? "filho(a) dela"
                         : "filho(a) dele"}
                     </span>

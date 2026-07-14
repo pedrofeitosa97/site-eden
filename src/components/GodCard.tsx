@@ -5,7 +5,7 @@ import type { God } from "@/data/gods";
 import { godIconMap } from "@/components/GodPortrait";
 import { gods } from "@/data/gods";
 
-const romanNumerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
+const romanNumerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV"];
 
 /* partículas determinísticas flutuando dentro da carta */
 function rand(i: number) {

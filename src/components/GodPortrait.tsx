@@ -11,6 +11,10 @@ import {
   Cloud,
   Sun,
   Moon,
+  Crown,
+  Wheat,
+  Hammer,
+  Feather,
 } from "lucide-react";
 import type { God } from "@/data/gods";
 
@@ -25,6 +29,10 @@ export const godIconMap = {
   cloud: Cloud,
   sun: Sun,
   moon: Moon,
+  crown: Crown,
+  wheat: Wheat,
+  hammer: Hammer,
+  feather: Feather,
 };
 
 interface GodPortraitProps {

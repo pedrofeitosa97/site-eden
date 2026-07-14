@@ -18,7 +18,7 @@ export default function GodDetail({ godId }: { godId: string }) {
       ? Math.min(100, parseInt(chanceParam, 10))
       : null;
 
-  const feminino = ["atena", "afrodite", "artemis"].includes(god.id);
+  const feminino = ["atena", "afrodite", "artemis", "hera", "demeter"].includes(god.id);
 
   return (
     <div className="relative z-10 px-4 py-12">

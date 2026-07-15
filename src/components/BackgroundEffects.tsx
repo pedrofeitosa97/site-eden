@@ -143,35 +143,50 @@ export default function BackgroundEffects() {
           </div>
         ))}
 
-        {/* cometa — cruza o céu 12s depois da página abrir */}
+        {/* cometa — cruza o céu 12s depois da página abrir, num arco elíptico suave */}
         <motion.div
-          className="absolute left-[-12%] top-[10%]"
+          className="absolute left-[-16%] top-[16%]"
           initial={{ x: 0, y: 0, opacity: 0 }}
-          animate={{ x: "125vw", y: "24vh", opacity: [0, 1, 1, 0] }}
-          transition={{ delay: 12, duration: 2.4, ease: "linear", times: [0, 0.12, 0.85, 1] }}
+          animate={{
+            x: "132vw",
+            /* arco raso: desce ganhando inclinação e assenta no fim, como
+               um trecho de elipse com curvatura mínima */
+            y: ["0vh", "4.5vh", "8vh", "10vh"],
+            opacity: [0, 0.9, 0.9, 0],
+          }}
+          transition={{
+            delay: 12,
+            duration: 4,
+            ease: "linear",
+            y: { delay: 12, duration: 4, times: [0, 0.33, 0.66, 1], ease: "easeOut" },
+            opacity: { delay: 12, duration: 4, times: [0, 0.2, 0.8, 1] },
+          }}
         >
-          <div
+          <motion.div
             className="relative"
-            style={{ transform: "rotate(11deg)" }}
+            initial={{ rotate: 8 }}
+            animate={{ rotate: [8, 6, 4, 3] }}
+            transition={{ delay: 12, duration: 4, times: [0, 0.33, 0.66, 1] }}
           >
             {/* cauda */}
             <div
-              className="h-[2px] w-40 md:w-56"
+              className="h-px w-56 md:w-80"
               style={{
                 background:
-                  "linear-gradient(to right, transparent, rgba(244,168,200,0.5) 60%, #ffd7e8 100%)",
+                  "linear-gradient(to right, transparent, rgba(244,168,200,0.28) 55%, rgba(255,215,232,0.75) 100%)",
+                filter: "blur(0.6px)",
               }}
             />
             {/* cabeça */}
             <div
-              className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full"
+              className="absolute right-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full"
               style={{
-                background: "#fff",
+                background: "#fff5fa",
                 boxShadow:
-                  "0 0 8px rgba(255,255,255,0.9), 0 0 20px rgba(244,168,200,0.8), 0 0 36px rgba(155,111,212,0.5)",
+                  "0 0 6px rgba(255,245,250,0.7), 0 0 16px rgba(244,168,200,0.45), 0 0 28px rgba(155,111,212,0.25)",
               }}
             />
-          </div>
+          </motion.div>
         </motion.div>
 
         {/* lua */}

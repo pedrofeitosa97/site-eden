@@ -15,13 +15,13 @@ export default function PageHeader({ title, subtitle, children }: PageHeaderProp
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="text-center mb-12"
+      className="text-center mb-8"
     >
-      <h1 className="font-display text-4xl md:text-5xl holographic-text mb-4">
+      <h1 className="font-display text-3xl md:text-4xl holographic-text mb-3">
         {title}
       </h1>
       {subtitle && (
-        <p className="text-white/60 text-lg max-w-2xl mx-auto">{subtitle}</p>
+        <p className="text-white/60 text-base md:text-lg max-w-2xl mx-auto">{subtitle}</p>
       )}
       {children}
     </motion.div>

@@ -317,7 +317,7 @@ export default function LegadoPage() {
   })();
 
   return (
-    <div className="relative z-10 px-4 py-12">
+    <div className="relative z-10 px-4 py-6 sm:py-8">
       <div className="max-w-4xl mx-auto">
         <PageHeader
           title="Qual Essência Habita Você?"
@@ -333,52 +333,52 @@ export default function LegadoPage() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
             >
-              <GlassCard className="p-6 sm:p-8 md:p-12 text-center" hover={false} reveal={false}>
+              <GlassCard className="p-5 sm:p-6 md:p-8 text-center" hover={false} reveal={false}>
                 <div
-                  className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-eden-purple/10 border border-eden-purple/30 mb-6 animate-pulse-glow"
+                  className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-eden-purple/10 border border-eden-purple/30 mb-4 animate-pulse-glow"
                   style={{ animationDuration: "4s" }}
                 >
-                  <Eye className="text-eden-holographic" size={28} />
+                  <Eye className="text-eden-holographic" size={22} />
                 </div>
 
-                <h2 className="font-display text-2xl md:text-3xl text-white mb-4">
+                <h2 className="font-display text-xl md:text-2xl text-white mb-3">
                   Algo em Éden virou os olhos na sua direção.
                 </h2>
 
-                <p className="text-white/60 leading-relaxed max-w-xl mx-auto mb-4">
+                <p className="text-white/60 text-sm leading-relaxed max-w-xl mx-auto mb-2.5">
                   A noite em Éden nunca dorme — ela apenas espera. Em algum lugar entre o
                   último batimento do seu coração e o primeiro sussurro que você não soube
                   explicar, uma essência antiga percebeu que você existe.
                 </p>
-                <p className="text-white/60 leading-relaxed max-w-xl mx-auto mb-10">
+                <p className="text-white/60 text-sm leading-relaxed max-w-xl mx-auto mb-5">
                   Responda com sinceridade. Não escolha o que parece mais poderoso, belo ou
                   admirável — escolha aquilo que você seria mesmo quando ninguém estivesse
                   observando. É assim, e só assim, que uma essência verdadeira se revela.
                 </p>
 
-                <div className="grid grid-cols-3 gap-4 max-w-md mx-auto mb-10">
-                  <div className="text-center p-4 rounded-lg bg-white/5">
-                    <p className="text-2xl font-display text-eden-holographic">3</p>
+                <div className="grid grid-cols-3 gap-3 max-w-md mx-auto mb-6">
+                  <div className="text-center p-2.5 rounded-lg bg-white/5">
+                    <p className="text-xl font-display text-eden-holographic">3</p>
                     <p className="text-xs text-white/40">Núcleos</p>
                   </div>
-                  <div className="text-center p-4 rounded-lg bg-white/5">
-                    <p className="text-2xl font-display text-eden-holographic">{clans.length}</p>
+                  <div className="text-center p-2.5 rounded-lg bg-white/5">
+                    <p className="text-xl font-display text-eden-holographic">{clans.length}</p>
                     <p className="text-xs text-white/40">Essências</p>
                   </div>
-                  <div className="text-center p-4 rounded-lg bg-white/5">
-                    <p className="text-2xl font-display text-eden-holographic">1</p>
+                  <div className="text-center p-2.5 rounded-lg bg-white/5">
+                    <p className="text-xl font-display text-eden-holographic">1</p>
                     <p className="text-xs text-white/40">Verdade</p>
                   </div>
                 </div>
 
                 <button
                   onClick={start}
-                  className="eden-button-primary px-10 py-4 text-lg w-full sm:w-auto"
+                  className="eden-button-primary px-10 py-3.5 text-base w-full sm:w-auto"
                 >
                   Iniciar o Ritual
                 </button>
 
-                <p className="mt-6 text-xs text-white/30 italic">
+                <p className="mt-4 text-xs text-white/30 italic">
                   Não existe resposta certa. Existe apenas quem você é.
                 </p>
               </GlassCard>

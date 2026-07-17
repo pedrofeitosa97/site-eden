@@ -2,7 +2,7 @@ export type CoreId = "vampiros" | "changelings" | "garou";
 export type FactionId = "camarilla" | "saba";
 
 export type SymbolIcon =
-  | "mirror"
+  | "harp"
   | "skull"
   | "shadow"
   | "brain"
@@ -92,8 +92,8 @@ export const clans: Clan[] = [
     colors: { from: "#ff4d6d", to: "#7a0c1f", glow: "rgba(255, 77, 109, 0.4)" },
     colorName: "Vermelho",
     flower: "Rosa",
-    symbol: "Espelho",
-    icon: "mirror",
+    symbol: "Harpa",
+    icon: "harp",
     traits: ["Carisma", "Sensibilidade", "Influência", "Criatividade"],
     shadow: "Vaidade, obsessão e necessidade de reconhecimento.",
     description: [
@@ -465,7 +465,7 @@ export const camarillaTiebreak: QuizQuestion = {
   id: "c-tie",
   question: "Qual objeto parece chamar por você?",
   options: [
-    { text: "Um espelho antigo, ainda impecável apesar da passagem dos séculos.", target: "musa" },
+    { text: "Uma harpa antiga, ainda afinada apesar da passagem dos séculos.", target: "musa" },
     { text: "Uma caveira branca envolvida por flores cuidadosamente preservadas.", target: "sepulcrum" },
     { text: "Uma sombra que continua se movendo mesmo quando seu proprietário permanece imóvel.", target: "oblivium" },
     { text: "Um cérebro desenhado em um manuscrito repleto de anotações incompreensíveis.", target: "dissonance" },

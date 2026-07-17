@@ -20,13 +20,15 @@ function baseProps({ size = 24, strokeWidth = 1.8, ...rest }: IconProps) {
   };
 }
 
-export function MirrorIcon(props: IconProps) {
+export function HarpIcon(props: IconProps) {
   return (
     <svg {...baseProps(props)}>
-      <ellipse cx="12" cy="9.5" rx="6" ry="7.2" />
-      <ellipse cx="12" cy="9.5" rx="3.6" ry="4.6" opacity="0.5" />
-      <path d="M12 16.7v4.3" />
-      <path d="M8.7 21h6.6" />
+      <path d="M7 21V6.5C7 4 8.8 2.2 11.5 2c3 3 4.5 7 4.5 12.5" />
+      <path d="M7 21h2.5" />
+      <path d="M7 4.6h9.8" />
+      <path d="M8.4 8.2h6" />
+      <path d="M8.9 11.8h4.6" />
+      <path d="M9.3 15.4h3.6" />
     </svg>
   );
 }
@@ -78,7 +80,7 @@ export function WolfIcon(props: IconProps) {
 }
 
 export const symbolIconMap: Record<SymbolIcon, (props: IconProps) => JSX.Element> = {
-  mirror: MirrorIcon,
+  harp: HarpIcon,
   skull: (p) => <Skull {...p} strokeWidth={p.strokeWidth ?? 1.8} />,
   shadow: ShadowIcon,
   brain: (p) => <Brain {...p} strokeWidth={p.strokeWidth ?? 1.8} />,

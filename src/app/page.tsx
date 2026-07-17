@@ -101,7 +101,7 @@ export default function HomePage() {
             className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <a
-              href="https://discord.gg/eden"
+              href="https://discord.gg/q4Q7ZdWZPX"
               target="_blank"
               rel="noopener noreferrer"
               className="eden-button-primary px-8 py-4 text-base sm:text-lg w-full sm:w-auto text-center"
@@ -173,7 +173,7 @@ export default function HomePage() {
               </div>
               <div className="text-center mt-8">
                 <a
-                  href="https://discord.gg/eden"
+                  href="https://discord.gg/q4Q7ZdWZPX"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="eden-button-primary px-8 py-3 inline-block"
@@ -261,7 +261,7 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="https://discord.gg/eden"
+                href="https://discord.gg/q4Q7ZdWZPX"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="eden-button-primary px-10 py-4 text-lg inline-block w-full sm:w-auto text-center"

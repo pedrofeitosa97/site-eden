@@ -75,7 +75,7 @@ export default function LinksPage() {
               de allowlist acontece, além de suporte, eventos e novidades.
             </p>
             <a
-              href="https://discord.gg/eden"
+              href="https://discord.gg/q4Q7ZdWZPX"
               target="_blank"
               rel="noopener noreferrer"
               className="eden-button-primary px-8 py-3 inline-flex items-center gap-2"

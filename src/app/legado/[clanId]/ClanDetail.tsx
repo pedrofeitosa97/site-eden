@@ -150,7 +150,7 @@ export default function ClanDetail({ clanId }: { clanId: string }) {
             Iniciar o ritual
           </Link>
           <a
-            href="https://discord.gg/eden"
+            href="https://discord.gg/q4Q7ZdWZPX"
             target="_blank"
             rel="noopener noreferrer"
             className="eden-button px-6 py-3 w-full sm:w-auto text-center"

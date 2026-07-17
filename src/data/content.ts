@@ -643,7 +643,7 @@ export const socialLinks: SocialLink[] = [
   {
     id: "discord",
     name: "Discord",
-    url: "https://discord.gg/eden",
+    url: "https://discord.gg/q4Q7ZdWZPX",
     icon: "discord",
     description: "Entre na nossa comunidade. Allowlist, suporte e novidades.",
   },

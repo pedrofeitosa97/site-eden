@@ -235,24 +235,322 @@ E que, em algum nível do governo, alguém sempre soubera disso.`,
     type: "main",
     content: [
       {
-        id: "regras-1",
-        title: "Regras Gerais",
-        content: `1. Respeite todos os jogadores e membros da staff.
-2. Roleplay de qualidade é obrigatório — mantenha seu personagem consistente.
-3. Proibido metagaming (usar informações que seu personagem não saberia).
-4. Proibido powergaming (forçar ações sobre outros jogadores).
-5. RDM (Random Deathmatch) e VDM (Vehicle Deathmatch) são estritamente proibidos.
-6. Value of Life (VoL) — seu personagem deve valorizar sua vida.
-7. New Life Rule (NLR) — após morrer, esqueça os eventos que levaram à sua morte.`,
+        id: "regras-termos",
+        title: "Termos de Usuário",
+        content: `Bem-vindo (a) ao Éden! Você já se perguntou o que há além dos portões do jardim? A sua jornada é descobrir e se encontrar em um mundo repleto de fantasias únicas. Para seu embarque nessa ilha, é necessário que esteja ciente dos termos e diretrizes para que tenha uma boa estadia, afinal, uma vez que entrar, a saída não se torna uma opção.
+
+Éden é um servidor de FiveM, que permite a modificação de conteúdo do jogo Grand Theft Auto V. Ao ingressar na cidade, você reconhece e concorda com os seguintes termos:
+
+Licença Legal do GTA: para acessar e jogar na cidade, você deve possuir uma cópia original e licenciada do Grand Theft Auto V adquirida de forma legítima. O uso de cópias piratas ou modificadas do jogo é estritamente proibido, e qualquer jogador encontrado utilizando software não licenciado será banido do servidor.
+
+Uso do FiveM: operamos na plataforma FiveM, que é um cliente de modificação afiliado oficialmente pela Rockstar Games. O uso é de responsabilidade do jogador, e não nos responsabilizamos por quaisquer sanções ou restrições que possam ser aplicadas por terceiros, incluindo a Rockstar Games.
+
+Conformidade com a Lei: ao jogar no Éden, você concorda em seguir todas as leis aplicáveis de direitos autorais, propriedade intelectual e termos de uso do GTA V e FiveM. A violação dessas leis poderá resultar em remoção imediata da cidade e em outras ações legais, conforme aplicável.
+
+Doações de Arquivos
+2.1 Doações — o servidor aceita doações voluntárias para a manutenção e desenvolvimento da cidade. Todas as doações são definitivas e não reembolsáveis. Essas contribuições não garantem vantagens especiais, itens in-game ou outros fatores que afetam a jogabilidade.
+2.2 Doações de Arquivos e Conteúdos — jogadores e membros da comunidade que quiserem doar arquivos, como scripts, veículos, roupas, mapas ou qualquer outro conteúdo de modificação, devem seguir os seguintes termos: todos os arquivos doados devem ser de propriedade ou ter os direitos de uso concedidos por seu criador original. Ao doar arquivos, você concede à administração da cidade uma licença perpétua, irrevogável e livre para usar, modificar e distribuir o conteúdo dentro do servidor e para seus fins relacionados. Não há garantia de que os arquivos doados serão implementados ou usados. Arquivos com conteúdo inadequado ou que infrinjam direitos autorais serão recusados, e o doador pode ser punido se violar leis de propriedade intelectual.
+
+Uso de Imagens de Streamers e Criadores de Conteúdo
+3.1 Autorização de Uso de Imagens — ao participar de eventos na cidade e ao fazer lives ou gravações de conteúdo relacionados ao servidor, os jogadores/streamers autorizam a administração da cidade a usar suas imagens, vídeos, clipes, capturas de tela e outros conteúdos relacionados à cidade para fins de divulgação e marketing.
+3.2 Finalidade e Uso das Imagens — as imagens, vídeos e clipes dos streamers poderão e SERÃO utilizados em campanhas promocionais, anúncios, eventos especiais e publicações do Éden, tanto em plataformas digitais quanto em redes sociais, sem a necessidade de remuneração ao streamer.
+3.3 Consentimento para Fins Comerciais — ao concordar com estes termos, os streamers autorizam o uso de sua imagem para fins comerciais, incluindo mas não se limitando a vídeos de divulgação, banners, trailers de eventos e campanhas publicitárias que promovam a cidade.
+3.4 Revogação de Autorização — streamers que desejarem revogar o consentimento para o uso de suas imagens devem notificar a administração por escrito. A partir da notificação, o uso de novos materiais será interrompido, mas a cidade poderá continuar utilizando conteúdos anteriores já em circulação.
+
+Consequências por Quebra de Regras
+A administração se reserva o direito de aplicar sanções aos jogadores que violarem estes Termos e Condições. As penalidades incluem, mas não se limitam a: advertências; banimentos temporários; banimentos permanentes.
+
+Propriedade Intelectual
+Todo o conteúdo criado e fornecido pelo Éden, incluindo mas não se limitando a textos, imagens, scripts, narrativas e design de mapas, é de propriedade exclusiva da cidade e não pode ser reproduzido ou distribuído sem permissão por escrito. Conteúdos personalizados como roupas, acessórios, cabelos e cosméticos são para uso próprio do servidor. Não há venda/comercialização ou NFT envolvido a esses itens.
+
+Atualizações nos Termos
+Nos reservamos o direito de atualizar estes Termos e Condições a qualquer momento. Os jogadores serão notificados sobre quaisquer alterações, e o uso contínuo do serviço implica na aceitação dessas mudanças.
+
+Aceitação dos Termos
+Ao utilizar o nosso serviço acessando o nosso servidor, você reconhece que leu e compreendeu estes Termos e Condições, e concorda em segui-los durante todo o tempo em que permanecer jogando em Éden.`,
       },
       {
-        id: "regras-2",
+        id: "regras-discord",
+        title: "Regras Discord",
+        content: `1. Trate todos os membros com respeito. Ofensas, discriminação, preconceito, bullying, assédio ou qualquer outro comportamento tóxico não serão tolerados.
+2. Discussões saudáveis são permitidas, mas ataques pessoais ou incitação a conflitos/ódio são proibidos.
+3. Não compartilhe conteúdo ofensivo, ilegal, pornográfico ou excessivamente violento.
+4. Links para sites duvidosos, golpes ou spam são estritamente proibidos.
+5. Cada canal tem um propósito específico. Poste apenas no canal adequado. Exemplo: sugestões no canal de sugestões, etc.
+6. Evite flood e spam. Valorize a organização do servidor.
+7. É proibida qualquer divulgação de outros servidores, canais ou redes sociais sem autorização da equipe. Para divulgar algo, consulte algum membro da equipe.
+8. Denúncias ou reportes de bugs devem ser feitos com vídeo e explicação, na área de tickets do Discord.
+9. Contato com membros da staff via DM não será atendido. Utilize o sistema de tickets.`,
+      },
+      {
+        id: "regras-gerais",
+        title: "Regras Gerais",
+        content: `1. Discriminação é proibida, conforme art. 3º, IV da Constituição Federal.
+2. Não é permitido sair do roleplay em nenhuma circunstância.
+3. É proibido chamar serviços apenas para sequestrar, roubar ou emboscar quem está em serviço.
+4. Toda ação relevante (com ou sem PvP) deve ser gravada e apresentada à staff se solicitada. Inclui: ações de rua, guerras, sequestros, etc.
+4.1. Gravação deve ser completa, sem cortes e com áudio.
+4.2. Gravações devem ser guardadas por pelo menos 48 horas.
+5. Militares sequestrados podem ter somente celular e rádio retirados.
+6. É proibido pegar um player nocauteado e forçá-lo a falar, entregar itens e outras ações sem RP prévio.
+7. Proibido qualquer RP envolvendo: assédio, importunação sexual, racismo, homofobia, xenofobia, suicídio, etc.
+8. Se estiver em serviço (ponto batido), é proibido praticar atos ilegais.
+9. Existem dois estados ao desmaiar: no primeiro, o player fica consciente, porém rastejando e agonizando no chão, mas consegue ver e ouvir tudo ao seu redor. Caso não seja socorrido a tempo, ele desmaia, não ouvindo ou vendo mais nada. Porém, caso socorrido, o player se lembra até o momento em que estava consciente no chão.
+10. Proibido comercializar itens VIP.
+11. Proibido: metagaming, RDM, VDM, combat logging, power RP, falta de amor à vida, anti RP, cheating e abuso de bugs.
+12. Proibido mods que deem vantagem. Exemplos: remover noite/água/confete; remover itens/props; alterar cor/modelo de armas; alterar som dos passos. Mod gráfico para melhoria visual é permitido.
+13. Mortos em ação de rua e reanimados fora dela não podem retornar à ação, seja para buscar corpos ou veículos. Inclui ações sobrenaturais.
+
+Safe Zone
+Não há Safe Zone em Éden. Entretanto, deve ser mantido o bom senso em não realizar ações repentinamente em qualquer lugar ou momento.
+
+Power Gaming
+É expressamente proibido utilizar veículos para causar danos, como colidir, rodar ou capotar intencionalmente em outros veículos. O famoso "bate-bate" está vetado e essa prática passa a ser considerada VDM e Power Gaming, podendo resultar em punições severas. Se você está perseguindo alguém e bate intencionalmente no carro da outra pessoa com o objetivo de capotá-lo ou quebrá-lo para obter vantagem, sua ação estará resultando na quebra dessa regra e será punido. Casos com problemas de conexão serão avaliados.
+
+Fica permitido apenas o uso de caminhonetes, SUVs e motos de trilha específicas para subir montanhas e terrenos irregulares (alguns modelos permitidos incluem Sanchez, Manches, entre outras). Outros veículos não estão autorizados a serem conduzidos "off-road" e serão enquadrados como Power Gaming sem ressalvas.
+
+Trash RP
+A prática de Trash RP, ou seja, interpretações de papéis sombrios/indesejados, muitos considerados criminosos, é inaceitável no servidor e culmina em BANIMENTO PERMANENTE. Exemplos: assédio, LGBTQIAP+fobia, terrorismo, suicídio, tortura, racismo, entre outros.
+
+Adendo: por se tratar de um universo com temática mais madura, o servidor permite certas situações de Trash RP. No entanto, é fundamental ter bom senso — essa liberdade não é um passe livre para abusos. Existem limites que não devem ser excedidos, e ao entrar, você concorda em participar dessa dinâmica de forma consciente.
+
+Tortura ou Mutilação
+Permitido apenas em contexto sobrenatural. Quem sofrer o RP deve interpretar as consequências por pelo menos 1 dia. As demais regras de RP estão listadas diretamente em nossa entrevista — princípios básicos como Anti RP, Flaming, VDM e Cop Bait estão terminantemente proibidos.`,
+      },
+      {
+        id: "regras-denuncias",
+        title: "Regras Denúncias",
+        content: `Denúncias têm um prazo de até 48 horas após o ocorrido para serem efetuadas, com as provas anexadas em vídeo ou prints.
+
+Denúncias que não envolvam diretamente o denunciante não serão aceitas.
+
+A ferramenta de denúncias deve ser usada de forma coerente e condizente com o seu propósito. Caso o staff responsável entenda que a denúncia foi feita de má intenção ou para rebater uma situação específica, ele poderá invalidá-la.
+
+Sistema de punição
+Alinhamento: não é considerada a primeira advertência formal — usado apenas para casos leves.
+ADV 1: tempban de 24 horas.
+ADV 2: tempban de 72 horas.
+ADV 3: banimento permanente.`,
+      },
+      {
+        id: "regras-doacoes",
+        title: "Termos de Doações",
+        content: `Propósito da Doação: as doações feitas ao Éden são destinadas exclusivamente para a manutenção e desenvolvimento contínuo do servidor.
+
+Condições de Doação: as doações são inteiramente voluntárias e não garantem benefícios ou vantagens pay-to-win (P2W) no jogo. Elas são contribuições para o crescimento do servidor e não representam compra de VIPs ou produtos — para contribuir, o doador deve concordar com os termos de doação.
+
+Política de Reembolso: uma vez realizada, a doação é irrevogável e não reembolsável. Em caso de erro, trocas poderão ser analisadas pela administração até 48 horas após a doação.
+
+Conduta e Responsabilidade: valorizamos a contribuição de cada jogador e pedimos que todos respeitem as regras do servidor para manter um ambiente saudável, divertido e acolhedor para toda a comunidade. Caso não concorde com os termos apresentados, evite proceder com a doação.`,
+      },
+      {
+        id: "regras-venda-itens",
+        title: "Venda de Itens",
+        content: `Esta regra tem como objetivo manter a integridade e a equidade no ambiente de jogo para todos os nossos jogadores. Para garantir uma experiência justa e equilibrada, a venda de quaisquer itens do jogo — incluindo, mas não se limitando a casas, dinheiro, veículos e itens (consumíveis ou não) — por dinheiro real é estritamente proibida neste servidor. Esta medida visa preservar a diversão e a competitividade do jogo, bem como proteger os interesses dos jogadores que buscam uma empreitada legítima.
+
+Itens do Jogo: refere-se a todos os elementos, bens, propriedades ou recursos disponíveis no ambiente de jogo, físicos ou virtuais, que podem ser adquiridos, possuídos ou utilizados pelos jogadores no contexto do jogo.
+
+Venda de Itens do Jogo: qualquer atividade que envolva a troca ou venda de itens do jogo, independentemente do valor ou moeda utilizada, em troca de dinheiro real ou qualquer forma de pagamento externa ao jogo.
+
+Servidor: refere-se ao Éden de maneira geral (servidor no FiveM, Discord, redes sociais, etc.).
+
+É expressamente proibida a venda de quaisquer itens do jogo, incluindo casas, dinheiro, veículos e itens (consumíveis ou não), por dinheiro real ou qualquer forma de pagamento externa ao servidor.
+
+Os jogadores identificados vendendo itens do jogo por dinheiro real, ou que se envolverem em transações dessa natureza, estarão sujeitos a punição. A punição para a violação desta regra será o banimento permanente do servidor, resultando na perda definitiva da allowlist.
+
+Encorajamos nossos jogadores a relatarem qualquer atividade suspeita relacionada à venda de itens do jogo aos administradores da Éden. Qualquer denúncia do gênero será tratada com confidencialidade e utilizada para investigações internas.
+
+A administração da Éden se reserva o direito de alterar ou atualizar esta regra a qualquer momento, a fim de manter a integridade do servidor.`,
+      },
+      {
+        id: "regras-permadeath",
+        title: "Permadeath",
+        content: `O PD de clã ou de personagem ocorrem de maneira similar. Em casos de PD ocasionado em clã, o jogador perde seu personagem, tendo que criar um novo, com vínculo narrativo distinto do anterior. O mesmo se aplica a PDs de personagem que não foram ocasionados por clã.
+
+Qualquer situação de PD deverá passar por análise da equipe responsável. A falta de valorização pela vida do personagem é a principal razão para a aplicação de PD. Alguns exemplos de situações que podem levar à perda definitiva:
+
+Provocar a própria morte: você não deve dar motivos para que sequestradores decidam matar seu personagem; ao contrário, seu objetivo deve ser convencê-los de que merece viver.
+Atuar como herói em desvantagem numérica: enfrentar um grupo claramente superior, especialmente em situação armada, é considerado imprudente.
+Usar rádio ou celular diante dos sequestradores sem permissão: qualquer atitude que demonstre descaso com a vida, desafiando diretamente os sequestradores, será punida.
+
+Esses são apenas alguns exemplos — o princípio geral é sempre valorizar a vida do personagem.
+
+Para as aplicações de PD envolvendo clã: o jogador poderá escolher a retirada do clã, ciente de que a única forma de retirada é através do permadeath, perdendo completamente o personagem de forma permanente. Em caso de captura e morte pelo exército da cidade, existe a possibilidade de ser liberado — o permadeath só ocorre quando o jogador é capturado e, posteriormente, morto pelo exército.
+
+Quem agir com Anti-Amor à Vida, quebrar imersão ou desrespeitar o roleplay também poderá levar permadeath.`,
+      },
+      {
+        id: "regras-monitoramento",
+        title: "Monitoramento Administrativo",
+        content: `Todos os jogadores estão sujeitos à constante análise pela administração do servidor para garantir o cumprimento efetivo das regras.
+
+A administração tem total autonomia para monitorar e suspeitar do uso de softwares terceiros para obter vantagem dentro do servidor, para coletar evidências e para banir ou suspender qualquer jogador do servidor.
+
+Jogadores suspeitos de utilizar tais softwares podem passar por procedimentos de averiguação para que voltem a ser liberados no servidor. A palavra de um administrador é igualmente considerada prova suficiente para suspensão ou banimento.
+
+Jogadores que descumprirem regras ou não contribuírem para um ambiente sadio e justo estão sujeitos a punições administrativas. Capturas de tela, vídeos, prints e arquivos de áudio são considerados meios de prova para punições administrativas.
+
+Averiguação
+Embora ninguém seja obrigado a aceitar a telagem, a administração poderá manter permanentemente banido quem a recusar, por suspeita de uso de softwares maliciosos, prezando pelo bom andamento do servidor.
+
+Ao suspeitar de um jogador, a administração poderá suspendê-lo temporariamente. Se logado, o prazo é de 1 hora para iniciar contato; se deslogado, o prazo é de 12 horas.
+
+A suspensão será sempre comunicada ao jogador. O jogador logado poderá ter a tela travada com uma mensagem solicitando o início de contato com a administração e, portanto, não deverá deslogar até que a averiguação seja concluída. Descumprir os prazos estipulados pode resultar em banimento permanente. A partir do momento em que iniciar contato, o jogador não deverá demorar mais do que 15 minutos para responder às exigências da administração, e deve manter contato durante todo o processo.
+
+Após a telagem, as decisões podem incluir: liberação, se não houver observância de arquivos maliciosos; ou banimento permanente, se forem observados softwares desinstalados, rastros de scripts ou programas proibidos, computador reiniciado ou formatado, arquivos suspeitos apagados, ou interrupção de processos nativos (incluindo Windows otimizados/não oficiais que desativam processos suspeitos). Jogadores que recusarem a telagem serão banidos por suspeita de cheat.
+
+O Éden não divulga os resultados das telagens, tampouco armazena dados relativos a elas — isso é uma medida para proteger os interesses da comunidade e preservar um ambiente sadio e justo entre os jogadores. A exceção fica por conta de casos em que um jogador de má-fé tenta difamar o servidor após seu banimento: nessas situações excepcionais, o Éden e seus administradores poderão divulgar por meio de suas redes que determinado jogador foi banido por uso de softwares maliciosos.`,
+      },
+      {
+        id: "regras-regime-militar",
+        title: "Regras Regime Militar",
+        content: `O Regime Militar constitui a instância máxima de autoridade dentro da cidade, sendo um pilar central para a construção, manutenção e evolução da narrativa do servidor. Sua presença não se limita à atuação ostensiva, mas permeia toda a estrutura social, política e operacional, refletindo-se até nos detalhes mais sutis do cotidiano.
+
+Todos os cidadãos devem reconhecer e respeitar essa autoridade de forma coerente com o contexto de roleplay. Interações com agentes militares devem ser conduzidas com postura compatível à hierarquia estabelecida, prezando pela imersão, verossimilhança e qualidade da narrativa.
+
+É plenamente permitido o desenvolvimento de roleplays ilegais, bem como a existência de grupos que se oponham ao sistema vigente. No entanto, tais condutas implicam consequências diretas dentro do roleplay, proporcionais às ações tomadas. A oposição ao regime deve ser construída com base em desenvolvimento narrativo sólido, evitando ações rasas ou desprovidas de contexto.
+
+Atitudes que desconsiderem a autoridade militar de forma incoerente, desrespeitosa ou sem embasamento narrativo poderão ser interpretadas como quebra de conduta, estando sujeitas a sanções administrativas.
+
+O equilíbrio entre ordem e insurgência é parte essencial da experiência proposta. Dentro desse cenário, o respeito à estrutura militar não é apenas uma regra — é o elemento que sustenta a tensão, o conflito e a profundidade da cidade.`,
+      },
+      {
+        id: "regras-ilegais-1",
+        title: "Regras Ilegais",
+        content: `O ambiente ilegal é concebido como um espaço livre e dinâmico para os jogadores que desejam trilhar caminhos fora da ordem estabelecida.
+
+Os participantes têm total autonomia para explorar, descobrir e desenvolver atividades ilícitas, seja por meio de enigmas, interações ou investigações conduzidas dentro do próprio roleplay. Esses elementos podem levar à obtenção de recursos, itens e oportunidades estratégicas que fortalecem confrontos e narrativas paralelas.
+
+Não há figuras centrais responsáveis pela distribuição desses recursos. Cada indivíduo ou grupo é responsável por encontrar, produzir, negociar e expandir suas próprias operações de forma independente, valorizando a construção orgânica de histórias e conexões.
+
+A descoberta desses caminhos depende diretamente da imersão e da interação com outros jogadores. O acesso a informações, locais e oportunidades ilegais deve ser construído através de relações, confiança e desenvolvimento consistente do roleplay.
+
+Cada refém dá direito a uma única requisição — ou seja, um único refém não dá direito de pedir tanto a retirada do atirador quanto uma fuga limpa. Exemplo: um refém será trocado para retirar o atirador do helicóptero.
+
+Não é permitida a negociação de refém por armamento ou dinheiro em nenhuma situação.`,
+      },
+      {
+        id: "regras-ilegais-2",
+        title: "Regras Ilegais II",
+        content: `As ações dentro da cidade são classificadas em dois formatos distintos: Ações de Rua e Ações Fechadas. Cada uma possui regras específicas que devem ser respeitadas para garantir equilíbrio, coerência e qualidade no roleplay.
+
+Ações Fechadas são eventos iniciados por sistemas da cidade (ex.: roubos, invasões, assaltos com mecânica própria) e seguem regras rigorosas: devem ocorrer exclusivamente dentro da área designada, incluindo interiores quando aplicável, e todos os participantes devem permanecer no local durante a ação. É proibida a presença de participantes fora do perímetro da ação — caso identificado apoio externo, a situação será automaticamente convertida em ação de rua, permitindo resposta total das forças policiais.
+
+Possuem limite mínimo e máximo de participantes para ambos os lados (ilegal e forças da lei), e os agentes da lei sempre terão superioridade numérica. Há restrição de armamentos, devendo ser respeitada conforme a ação. Existe limite de veículos: até 3 veículos para o lado ilegal quando o objetivo for fuga, devendo estar posicionados dentro do perímetro da ação. É proibido posicionar veículos de forma a bloquear acessos, entradas ou rotas utilizadas pelas autoridades.
+
+Negociações só são permitidas em caso de refém — na ausência de reféns, a intervenção será direta. Caso a ação ultrapasse os limites da área designada, será automaticamente convertida em ação de rua, exceto em situações onde haja negociação ativa.
+
+Ações de Rua são dinâmicas e não dependem necessariamente de sistemas da cidade: podem ocorrer em qualquer espaço aberto, não possuem limite de participantes, não há limite para agentes da lei e não há restrição de armamento — mas devem sempre partir de um roleplay prévio coerente e válido.
+
+Convertem automaticamente para ação de rua: resgates durante perseguições, troca de veículos durante fuga e qualquer desdobramento fora de uma ação fechada.
+
+Em perseguições, considera-se um tempo médio de até 10 minutos para tentativa de fuga. Caso o suspeito não consiga evadir, os agentes poderão aplicar medidas progressivas para contenção (ex.: PIT, bloqueios, uso de força). Caso o jogador acate a ordem de parada e posteriormente fuja, será considerado quebra de conduta, autorizando resposta imediata com maior rigor por parte das autoridades.
+
+Resgates não são permitidos após o indivíduo estar algemado pelas autoridades. Resgates realizados durante fuga ativa transformam a situação em ação de rua.
+
+Jogadores que conseguirem fugir das autoridades serão incluídos na lista de procurados por até 7 dias. Durante esse período, poderão ser presos a qualquer momento por todos os crimes previamente cometidos, desde que estejam devidamente identificados.
+
+É proibido saquear agentes da lei. Agredir um agente armado sem possuir armamento equivalente (ou utilizando arma branca) poderá resultar em punição administrativa, dependendo do contexto do roleplay. As forças da lei sempre atuarão com força proporcionalmente superior, tanto em contingente quanto em armamento.
+
+O servidor prioriza a construção de narrativas coerentes e imersivas. A quebra de conduta, abuso de mecânicas ou atitudes que comprometam o desenvolvimento do roleplay poderão resultar em penalidades administrativas.`,
+      },
+      {
+        id: "regras-ilegais-3",
+        title: "Regras Ilegais III",
+        content: `Na cidade de Éden, incentivamos abordagens diversas e criativas para a execução das ações disponíveis. Todo jogador deve atuar com bom senso, respeitando integralmente as regras estabelecidas, visando sempre a construção de um roleplay imersivo, coerente e de alta qualidade.
+
+Ações de Rua são ações dinâmicas que podem ou não depender de mecânicas da cidade, sempre fundamentadas em um roleplay prévio válido: realizadas em espaço aberto, sem limite de participantes, sem limite de agentes da lei e sem restrição de classe de armamento.
+
+Ações Fechadas são iniciadas por mecânicas específicas da cidade, ocorrendo em áreas previamente determinadas: local pré-definido, iniciadas exclusivamente por sistemas da cidade, com limite específico de participantes, contingente policial compatível com a ação e restrição de classe de armamento.
+
+Caso participantes abandonem o perímetro da ação durante sua execução, esta será automaticamente convertida em ação de rua, exceto em casos onde haja negociação ativa.`,
+      },
+      {
+        id: "regras-armamentos",
+        title: "Classificação de Armamentos",
+        content: `Classe 1: Pistolas.
+Classe 2: Submetralhadoras, escopetas calibre 12 e pistolas automáticas.
+Classe 3: Rifles e metralhadoras.
+Classe 4: Explosivos e dispositivos incendiários.
+
+Assalto a Caixa Eletrônico
+Máx. bandidos: 2 · Máx. veículos: 1 · Armamento: Classe 1 ou arma branca
+
+Assalto a Residência
+Máx. bandidos: 3 · Máx. veículos: 1 · Máx. policiais: 6 · Armamento: exclusivamente armas brancas no interior
+O limite de policiais aplica-se apenas dentro da residência. Qualquer intervenção externa com comportamento agressivo converte a ação em ação de rua.
+
+Assalto a Loja
+Máx. bandidos: 4 · Máx. veículos: 2 · Máx. policiais: 6 · Armamento: Classe 1 · Negociação: opcional · Refém: opcional (máx. 1)
+
+Assalto ao Banco Fleeca
+Máx. bandidos: 4 · Máx. veículos: 2 · Máx. policiais: 8 · Armamento: Classe 1 · Negociação: opcional · Refém: opcional (máx. 1)
+
+Assalto ao Banco de Paleto
+Máx. bandidos: 6 · Máx. veículos: 2 · Máx. policiais: 10 · Armamento: Classe 1 ou 2 · Negociação: obrigatória · Refém: opcional (máx. 2)
+
+Assalto à Joalheria Vangelico
+Máx. bandidos: 6 · Máx. veículos: 3 · Máx. policiais: 10 · Armamento: Classe 3 · Negociação: obrigatória · Refém: obrigatório (máx. 2)
+
+Assalto ao Banco Pacific
+Máx. bandidos: 8 · Máx. veículos: 3 · Máx. policiais: 12 · Armamento: Classe 3 · Negociação: obrigatória · Refém: obrigatório (máx. 2)
+
+Assalto a Caminhão (Porto de Los Santos)
+Máx. bandidos: 8 · Máx. veículos: 3 · Máx. policiais: 12 · Armamento: Classe 1, 2 ou 3 · Negociação: obrigatória · Refém: opcional (máx. 2)
+
+Assalto ao Bobcat Security
+Máx. bandidos: 8 · Máx. veículos: 3 · Máx. policiais: 12 · Armamento: Classe 3 · Negociação: obrigatória · Refém: opcional (máx. 2)
+
+Roubo de Veículos (Aeroporto de Sandy Shores)
+Máx. bandidos: 8 · Máx. veículos: 3 · Máx. policiais: 12 · Armamento: Classe 1, 2 ou 3
+
+Assalto a Carro-Forte
+Máx. bandidos: 6 · Máx. veículos: 3 · Armamento: Classe 1, 2 ou 3
+
+Assalto ao Trem
+Máx. bandidos: 12 · Máx. veículos: 4 · Máx. policiais: 18 · Armamento: Classe 1, 2 ou 3
+
+Assalto à Ammu-Nation (Porto de Los Santos)
+Máx. bandidos: 8 · Máx. veículos: 3 · Máx. policiais: 12 · Armamento: Classe 1, 2 ou 3
+
+Assalto a Navio de Carga
+Máx. bandidos: 12 · Máx. veículos: 4 · Máx. policiais: 18 · Armamento: Classe 1, 2 ou 3
+
+Assalto a Iate
+Máx. bandidos: 10 · Máx. veículos: 4 · Máx. policiais: 16 · Armamento: Classe 1, 2 ou 3
+
+Contrabando de Animais
+Máx. bandidos: 6 · Máx. veículos: 3 · Máx. policiais: 10 · Armamento: Classe 1`,
+      },
+      {
+        id: "regras-sobrenaturais",
         title: "Regras Sobrenaturais",
-        content: `1. Cada raça sobrenatural possui habilidades e limitações específicas — respeite-as.
-2. Transformações devem ser roleplayadas adequadamente.
-3. O uso de poderes em áreas públicas deve ser discreto (Masquerade).
-4. Conflitos entre raças devem seguir a hierarquia e políticas estabelecidas.
-5. Criaturas novas devem passar por um processo de integração na lore.`,
+        content: `Não crie seu background focando em experiências sobrenaturais passadas, e muito menos saia procurando pelo oculto aleatoriamente sem uma justificativa impecável dentro do RP.
+
+O sobrenatural e o humano coexistem, mas a cidade mantém uma fachada de normalidade absoluta. O que é inexplicável deve permanecer enterrado. Se o seu personagem é humano, ele vive na ignorância total desse mundo sombrio. Forçar a quebra dessa fachada sem uma história sólida por trás resultará em punição.
+
+Ficar forçando interações para "descobrir" o que está oculto (aquela famosa "intuição" que esconde um metagaming) não será tolerado. A staff está sempre de olho: se percebermos forçação de situação, a punição vem direto da gente, sem precisar esperar denúncia de outro jogador.
+
+Iniciados em uma ação
+Os jogadores iniciados em clãs não participam de ações ilegais. Em ações generalizadas, deve ser dada preferência ao uso de habilidades, evitando a utilização de armas. A reação do jogador iniciado em algum clã é permitida — entretanto, é ideal ter consciência de que a reação terá uma consequência, que poderá ser uma exposição pessoal ou de raça, e até a iniciação de uma caçada contra si.
+
+Eventos de Lore ou sobrenaturais
+Quem agir com Anti-Amor à Vida, quebrar imersão ou desrespeitar o roleplay poderá levar permadeath.`,
+      },
+      {
+        id: "regras-disciplinas",
+        title: "Disciplinas",
+        content: `Limites do Poder
+Se o sistema não permite, você não pode fazer. Habilidades de controle mental (como dominação, presença, demência, etc.) terão mensagens claras na tela sobre o que podem ou não fazer. Na dúvida de como reagir, siga o fluxo da cena e chame um admin depois.
+
+O Abraço e o Despertar
+Criar um novo não-vivo ou despertar um ser quimérico exige um tempo mínimo de subserviência (como carniçal ou encantado), e interação real com o jogador após o primeiro contato. Pular etapas não é uma opção.
+
+Rituais Personalizados
+Grupos que focam em rituais além do que o sistema oferece precisam de aprovação prévia da staff. Lembre-se que as consequências dos seus rituais podem atingir a cidade inteira.
+
+O Peso do Uso
+Usar habilidades constantemente tem um preço, e seu personagem vai sentir isso no jogo. Interprete essa exaustão e, principalmente, interprete a confusão de ser um "recém-abraçado" ou recém-desperto que não entende os próprios limites.`,
       },
     ],
   },

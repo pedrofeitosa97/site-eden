@@ -110,7 +110,7 @@ export default function LorePage() {
                       {currentSection.content.split("\n\n").map((paragraph, i) => (
                         <p
                           key={i}
-                          className="text-white/70 leading-relaxed mb-4 last:mb-0"
+                          className="text-white/70 leading-relaxed mb-4 last:mb-0 whitespace-pre-line"
                         >
                           {paragraph}
                         </p>
@@ -118,7 +118,7 @@ export default function LorePage() {
                     </div>
 
                     {currentCategory.content.length > 1 && (
-                      <div className="flex items-center gap-2 mt-8 pt-6 border-t border-white/5">
+                      <div className="flex flex-wrap items-center gap-2 mt-8 pt-6 border-t border-white/5">
                         {currentCategory.content.map((section, i) => (
                           <button
                             key={section.id}

@@ -56,7 +56,7 @@ A cidade está diferente. Algo te chamou até aqui. E em Los Santos… nada cham
   },
   {
     id: "corte",
-    title: "A Corte Vampírica",
+    title: "Ordem e Caos",
     description: "Reis decadentes e intrigas sangrentas",
     type: "main",
     content: [
@@ -89,7 +89,7 @@ Em Los Santos, a Máscara ainda estava de pé. A diferença era que todos haviam
   },
   {
     id: "matilhas",
-    title: "As Matilhas",
+    title: "Territorialidade",
     description: "Lobisomens e a fome primordial",
     type: "main",
     content: [
@@ -130,7 +130,7 @@ Os Kojin ainda não terminaram.`,
   },
   {
     id: "feerico",
-    title: "O Mundo Feérico",
+    title: "O Sonhar",
     description: "Onde a realidade se desfaz",
     type: "main",
     content: [
@@ -177,7 +177,7 @@ A rainha não foi a única a despertar.`,
   },
   {
     id: "forcas-armadas",
-    title: "Forças Armadas",
+    title: "Estado de Vigília",
     description: "Ordem e equilíbrio em Los Santos",
     type: "main",
     content: [

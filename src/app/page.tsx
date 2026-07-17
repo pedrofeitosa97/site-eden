@@ -35,9 +35,9 @@ const features = [
   },
   {
     icon: Eye,
-    title: "Legado Divino",
+    title: "Qual Essência Habita Você?",
     description:
-      "De qual deus do Olimpo você é filho? O Oráculo espera pela sua consulta.",
+      "Vampiro, Changeling ou Garou? Descubra qual clã e qual natureza correm no seu sangue.",
     href: "/legado",
     color: "from-eden-holographic to-eden-purple",
   },

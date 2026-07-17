@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -11,27 +11,63 @@ import {
   History,
   Trash2,
   ChevronRight,
+  Moon,
 } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import GlassCard from "@/components/GlassCard";
-import GodPortrait from "@/components/GodPortrait";
-import GodCard from "@/components/GodCard";
-import { gods, godQuizQuestions, type God } from "@/data/gods";
+import ClanPortrait from "@/components/ClanPortrait";
+import ClanCard from "@/components/ClanCard";
+import {
+  clans,
+  getClan,
+  coreLabels,
+  factionLabels,
+  coreIntros,
+  groupClanIds,
+  rootQuestion,
+  vampireFactionQuestion,
+  factionTiebreakQuestions,
+  camarillaQuestions,
+  camarillaTiebreak,
+  sabaQuestions,
+  sabaTiebreak,
+  changelingQuestions,
+  changelingTiebreak,
+  garouQuestions,
+  garouTiebreak,
+  type Clan,
+  type CoreId,
+  type QuizQuestion,
+  type QuizOption,
+} from "@/data/clans";
 
-type Phase = "intro" | "quiz" | "revealing" | "result";
+type GroupKey = "camarilla" | "saba" | "changelings" | "garou";
 
-interface GodChance {
-  god: God;
+type Stage =
+  | "intro"
+  | "root"
+  | "vampire-intro"
+  | "vampire-faction"
+  | "faction-tiebreak"
+  | "changeling-intro"
+  | "garou-intro"
+  | GroupKey
+  | `${GroupKey}-tiebreak`
+  | "revealing"
+  | "result";
+
+interface ClanChance {
+  clan: Clan;
   percent: number;
 }
 
 interface SavedResult {
-  godId: string;
+  clanId: string;
   percent: number;
   date: string;
 }
 
-const HISTORY_KEY = "eden-legado-resultados";
+const HISTORY_KEY = "eden-quiz-essencias";
 
 function loadHistory(): SavedResult[] {
   try {
@@ -54,96 +90,243 @@ function saveToHistory(entry: SavedResult): SavedResult[] {
   return updated;
 }
 
-function computeChances(answers: number[]): GodChance[] {
-  const scores: Record<string, number> = {};
-  gods.forEach((g) => (scores[g.id] = 0));
+function zeroFor(ids: string[]): Record<string, number> {
+  return Object.fromEntries(ids.map((id) => [id, 0]));
+}
 
-  answers.forEach((optionIndex, questionIndex) => {
-    const option = godQuizQuestions[questionIndex].options[optionIndex];
-    Object.entries(option.weights).forEach(([godId, weight]) => {
-      scores[godId] += weight ?? 0;
-    });
-  });
+const GROUP_QUESTIONS: Record<GroupKey, QuizQuestion[]> = {
+  camarilla: camarillaQuestions,
+  saba: sabaQuestions,
+  changelings: changelingQuestions,
+  garou: garouQuestions,
+};
 
-  const total = Object.values(scores).reduce((a, b) => a + b, 0) || 1;
+const GROUP_TIEBREAK: Record<GroupKey, QuizQuestion> = {
+  camarilla: camarillaTiebreak,
+  saba: sabaTiebreak,
+  changelings: changelingTiebreak,
+  garou: garouTiebreak,
+};
 
-  const chances = gods
-    .map((god) => ({
-      god,
-      percent: Math.round((scores[god.id] / total) * 100),
-    }))
-    .sort((a, b) => b.percent - a.percent);
+const GROUP_TRAIL_LABEL: Record<GroupKey, string> = {
+  camarilla: "Trilha da Camarilla",
+  saba: "Trilha do Sabá",
+  changelings: "Trilha dos Changelings",
+  garou: "Trilha dos Garou",
+};
 
-  // ajusta arredondamento para somar exatamente 100
-  const sum = chances.reduce((a, c) => a + c.percent, 0);
-  chances[0].percent += 100 - sum;
+const REVEAL_WHISPERS: Record<CoreId, string[]> = {
+  vampiros: [
+    "o sangue antigo reconhece o seu nome…",
+    "a eternidade já escolheu um lado dentro de você…",
+  ],
+  changelings: [
+    "o véu entre os sonhos e o real se afina…",
+    "algo encantado sempre soube quem você era…",
+  ],
+  garou: [
+    "o instinto desperta antes da lua cheia…",
+    "uma alcateia distante já uiva o seu nome…",
+  ],
+};
 
-  return chances;
+function isGroupStage(stage: Stage): stage is GroupKey {
+  return stage === "camarilla" || stage === "saba" || stage === "changelings" || stage === "garou";
+}
+
+function isTiebreakStage(stage: Stage): stage is `${GroupKey}-tiebreak` {
+  return (
+    stage === "camarilla-tiebreak" ||
+    stage === "saba-tiebreak" ||
+    stage === "changelings-tiebreak" ||
+    stage === "garou-tiebreak"
+  );
 }
 
 export default function LegadoPage() {
-  const [phase, setPhase] = useState<Phase>("intro");
-  const [current, setCurrent] = useState(0);
-  const [answers, setAnswers] = useState<number[]>([]);
+  const [stage, setStage] = useState<Stage>("intro");
+  const [qIndex, setQIndex] = useState(0);
+  const [scores, setScores] = useState<Record<string, number>>({});
   const [selected, setSelected] = useState<number | null>(null);
+  const [resultClanId, setResultClanId] = useState<string | null>(null);
+  const [resultChances, setResultChances] = useState<ClanChance[]>([]);
   const [history, setHistory] = useState<SavedResult[]>([]);
 
   useEffect(() => {
     setHistory(loadHistory());
   }, []);
 
-  const chances = useMemo(
-    () => (answers.length === godQuizQuestions.length ? computeChances(answers) : null),
-    [answers]
-  );
-
   const start = () => {
-    setAnswers([]);
-    setCurrent(0);
+    setScores({});
+    setQIndex(0);
     setSelected(null);
-    setPhase("quiz");
+    setResultClanId(null);
+    setResultChances([]);
+    setStage("root");
+  };
+
+  const getCurrentQuestion = (): QuizQuestion | null => {
+    switch (stage) {
+      case "root":
+        return rootQuestion;
+      case "vampire-faction":
+        return vampireFactionQuestion;
+      case "faction-tiebreak":
+        return factionTiebreakQuestions[qIndex];
+      case "camarilla":
+      case "saba":
+      case "changelings":
+      case "garou":
+        return GROUP_QUESTIONS[stage][qIndex];
+      case "camarilla-tiebreak":
+      case "saba-tiebreak":
+      case "changelings-tiebreak":
+      case "garou-tiebreak":
+        return GROUP_TIEBREAK[stage.replace("-tiebreak", "") as GroupKey];
+      default:
+        return null;
+    }
+  };
+
+  const finishWithClan = (
+    id: string,
+    scoresSnapshot: Record<string, number>,
+    groupKey: GroupKey
+  ) => {
+    const ids = groupClanIds[groupKey];
+    const total = ids.reduce((a, i) => a + (scoresSnapshot[i] || 0), 0) || 1;
+    const chances = ids
+      .map((i) => ({
+        clan: getClan(i)!,
+        percent: Math.round(((scoresSnapshot[i] || 0) / total) * 100),
+      }))
+      .sort((a, b) => b.percent - a.percent);
+    const sum = chances.reduce((a, c) => a + c.percent, 0);
+    chances[0].percent += 100 - sum;
+
+    setResultChances(chances);
+    setResultClanId(id);
+    setHistory(
+      saveToHistory({ clanId: id, percent: chances[0].percent, date: new Date().toISOString() })
+    );
+    setStage("revealing");
+    setTimeout(() => setStage("result"), 1800);
+  };
+
+  const advance = (option: QuizOption) => {
+    switch (stage) {
+      case "root": {
+        if (option.target === "vampiros") {
+          setStage("vampire-intro");
+        } else if (option.target === "changelings") {
+          setScores(zeroFor(groupClanIds.changelings));
+          setStage("changeling-intro");
+        } else {
+          setScores(zeroFor(groupClanIds.garou));
+          setStage("garou-intro");
+        }
+        setQIndex(0);
+        break;
+      }
+      case "vampire-faction": {
+        if (option.target === "camarilla" || option.target === "saba") {
+          const key = option.target as GroupKey;
+          setScores(zeroFor(groupClanIds[key]));
+          setStage(key);
+        } else {
+          setScores({ camarilla: 0, saba: 0 });
+          setStage("faction-tiebreak");
+        }
+        setQIndex(0);
+        break;
+      }
+      case "faction-tiebreak": {
+        const newScores = { ...scores, [option.target]: (scores[option.target] || 0) + 1 };
+        if (qIndex < factionTiebreakQuestions.length - 1) {
+          setScores(newScores);
+          setQIndex(qIndex + 1);
+        } else {
+          const winner: GroupKey =
+            (newScores.camarilla || 0) >= (newScores.saba || 0) ? "camarilla" : "saba";
+          setScores(zeroFor(groupClanIds[winner]));
+          setStage(winner);
+          setQIndex(0);
+        }
+        break;
+      }
+      case "camarilla":
+      case "saba":
+      case "changelings":
+      case "garou": {
+        const groupKey = stage;
+        const newScores = { ...scores, [option.target]: (scores[option.target] || 0) + 1 };
+        const questions = GROUP_QUESTIONS[groupKey];
+        if (qIndex < questions.length - 1) {
+          setScores(newScores);
+          setQIndex(qIndex + 1);
+        } else {
+          const ids = groupClanIds[groupKey];
+          const max = Math.max(...ids.map((id) => newScores[id] || 0));
+          const top = ids.filter((id) => (newScores[id] || 0) === max);
+          if (top.length === 1) {
+            finishWithClan(top[0], newScores, groupKey);
+          } else {
+            setScores(newScores);
+            setStage(`${groupKey}-tiebreak`);
+            setQIndex(0);
+          }
+        }
+        break;
+      }
+      case "camarilla-tiebreak":
+      case "saba-tiebreak":
+      case "changelings-tiebreak":
+      case "garou-tiebreak": {
+        const groupKey = stage.replace("-tiebreak", "") as GroupKey;
+        const bumped = { ...scores, [option.target]: (scores[option.target] || 0) + 1 };
+        finishWithClan(option.target, bumped, groupKey);
+        break;
+      }
+      default:
+        break;
+    }
   };
 
   const choose = (index: number) => {
     if (selected !== null) return;
+    const question = getCurrentQuestion();
+    if (!question) return;
     setSelected(index);
-
-    const newAnswers = [...answers, index];
-
     setTimeout(() => {
-      setAnswers(newAnswers);
+      advance(question.options[index]);
       setSelected(null);
-
-      if (current < godQuizQuestions.length - 1) {
-        setCurrent((prev) => prev + 1);
-      } else {
-        const finalChances = computeChances(newAnswers);
-        setHistory(
-          saveToHistory({
-            godId: finalChances[0].god.id,
-            percent: finalChances[0].percent,
-            date: new Date().toISOString(),
-          })
-        );
-        setPhase("revealing");
-        setTimeout(() => setPhase("result"), 1800);
-      }
     }, 350);
   };
 
-  const primary = chances?.[0];
+  const question = getCurrentQuestion();
+  const resultClan = resultClanId ? getClan(resultClanId) ?? null : null;
+
+  const progress = (() => {
+    if (stage === "faction-tiebreak") {
+      return { current: qIndex + 1, total: factionTiebreakQuestions.length, label: "Rota de definição da facção" };
+    }
+    if (isGroupStage(stage)) {
+      return { current: qIndex + 1, total: GROUP_QUESTIONS[stage].length, label: GROUP_TRAIL_LABEL[stage] };
+    }
+    return null;
+  })();
 
   return (
     <div className="relative z-10 px-4 py-12">
       <div className="max-w-4xl mx-auto">
         <PageHeader
-          title="Legado Divino"
-          subtitle="O Despertar revelou verdades que a cidade escondia. Uma delas corre nas suas veias."
+          title="Qual Essência Habita Você?"
+          subtitle="Entre a eternidade, o sonho e o instinto, existem forças que moldam aqueles que atravessam os limites do mundo comum."
         />
 
         <AnimatePresence mode="wait">
           {/* ───────────────────────── INTRO ───────────────────────── */}
-          {phase === "intro" && (
+          {stage === "intro" && (
             <motion.div
               key="intro"
               initial={{ opacity: 0, y: 20 }}
@@ -159,36 +342,28 @@ export default function LegadoPage() {
                 </div>
 
                 <h2 className="font-display text-2xl md:text-3xl text-white mb-4">
-                  O Oráculo sente algo em você.
+                  Algo em Éden virou os olhos na sua direção.
                 </h2>
 
                 <p className="text-white/60 leading-relaxed max-w-xl mx-auto mb-4">
-                  Dizem que quando o Véu se rompeu em Éden, os deuses antigos
-                  voltaram a olhar para os seus descendentes. A maioria vive sem
-                  saber. Alguns sentem — a inquietação, os sonhos estranhos, a
-                  sensação de não pertencer.
+                  A noite em Éden nunca dorme — ela apenas espera. Em algum lugar entre o
+                  último batimento do seu coração e o primeiro sussurro que você não soube
+                  explicar, uma essência antiga percebeu que você existe.
                 </p>
                 <p className="text-white/60 leading-relaxed max-w-xl mx-auto mb-10">
-                  Responda com sinceridade. São{" "}
-                  <strong className="text-eden-pink-light">
-                    {godQuizQuestions.length} perguntas
-                  </strong>{" "}
-                  sobre quem você realmente é — e no final, o Oráculo revelará de
-                  qual deus do Olimpo você tem mais chance de ser filho.
+                  Responda com sinceridade. Não escolha o que parece mais poderoso, belo ou
+                  admirável — escolha aquilo que você seria mesmo quando ninguém estivesse
+                  observando. É assim, e só assim, que uma essência verdadeira se revela.
                 </p>
 
                 <div className="grid grid-cols-3 gap-4 max-w-md mx-auto mb-10">
                   <div className="text-center p-4 rounded-lg bg-white/5">
-                    <p className="text-2xl font-display text-eden-holographic">
-                      {godQuizQuestions.length}
-                    </p>
-                    <p className="text-xs text-white/40">Perguntas</p>
+                    <p className="text-2xl font-display text-eden-holographic">3</p>
+                    <p className="text-xs text-white/40">Núcleos</p>
                   </div>
                   <div className="text-center p-4 rounded-lg bg-white/5">
-                    <p className="text-2xl font-display text-eden-holographic">
-                      {gods.length}
-                    </p>
-                    <p className="text-xs text-white/40">Deuses</p>
+                    <p className="text-2xl font-display text-eden-holographic">{clans.length}</p>
+                    <p className="text-xs text-white/40">Essências</p>
                   </div>
                   <div className="text-center p-4 rounded-lg bg-white/5">
                     <p className="text-2xl font-display text-eden-holographic">1</p>
@@ -200,7 +375,7 @@ export default function LegadoPage() {
                   onClick={start}
                   className="eden-button-primary px-10 py-4 text-lg w-full sm:w-auto"
                 >
-                  Consultar o Oráculo
+                  Iniciar o Ritual
                 </button>
 
                 <p className="mt-6 text-xs text-white/30 italic">
@@ -234,23 +409,23 @@ export default function LegadoPage() {
 
                   <div className="space-y-3">
                     {history.map((entry, i) => {
-                      const god = gods.find((g) => g.id === entry.godId);
-                      if (!god) return null;
+                      const clan = getClan(entry.clanId);
+                      if (!clan) return null;
                       return (
                         <Link
                           key={`${entry.date}-${i}`}
-                          href={`/legado/${god.id}?chance=${entry.percent}`}
+                          href={`/legado/${clan.id}?chance=${entry.percent}`}
                           className="group flex items-center gap-3 sm:gap-4 p-3 rounded-lg bg-white/5 border border-white/5 transition-all duration-300 hover:bg-white/10 hover:border-white/15"
                         >
                           <div className="shrink-0">
-                            <GodPortrait god={god} size={40} animate={false} />
+                            <ClanPortrait clan={clan} size={40} animate={false} />
                           </div>
                           <div className="flex-1 min-w-0">
                             <p
                               className="text-sm font-medium truncate"
-                              style={{ color: god.colors.from }}
+                              style={{ color: clan.colors.from }}
                             >
-                              Filho(a) de {god.name}
+                              {clan.name}
                             </p>
                             <p className="text-xs text-white/40">
                               {new Date(entry.date).toLocaleDateString("pt-BR", {
@@ -264,7 +439,7 @@ export default function LegadoPage() {
                           </div>
                           <span
                             className="shrink-0 font-display text-lg"
-                            style={{ color: god.colors.from }}
+                            style={{ color: clan.colors.from }}
                           >
                             {entry.percent}%
                           </span>
@@ -281,10 +456,52 @@ export default function LegadoPage() {
             </motion.div>
           )}
 
-          {/* ───────────────────────── QUIZ ───────────────────────── */}
-          {phase === "quiz" && (
+          {/* ───────────────────────── INTRODUÇÕES DE NÚCLEO ───────────────────────── */}
+          {(stage === "vampire-intro" || stage === "changeling-intro" || stage === "garou-intro") && (
             <motion.div
-              key={`quiz-${current}`}
+              key={stage}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="max-w-2xl mx-auto"
+            >
+              <GlassCard className="p-6 sm:p-8 md:p-12 text-center" hover={false} reveal={false}>
+                <div
+                  className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-eden-purple/10 border border-eden-purple/30 mb-6"
+                >
+                  <Sparkles className="text-eden-holographic" size={24} />
+                </div>
+                <p className="text-xs uppercase tracking-[0.3em] text-eden-holographic/70 mb-3">
+                  {coreIntros[
+                    stage === "vampire-intro" ? "vampiros" : stage === "changeling-intro" ? "changelings" : "garou"
+                  ].title}
+                </p>
+                <div className="space-y-4 text-white/60 leading-relaxed mb-10">
+                  {coreIntros[
+                    stage === "vampire-intro" ? "vampiros" : stage === "changeling-intro" ? "changelings" : "garou"
+                  ].paragraphs.map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
+                </div>
+                <button
+                  onClick={() => {
+                    if (stage === "vampire-intro") setStage("vampire-faction");
+                    else if (stage === "changeling-intro") setStage("changelings");
+                    else setStage("garou");
+                    setQIndex(0);
+                  }}
+                  className="eden-button-primary px-8 py-3.5"
+                >
+                  Continuar
+                </button>
+              </GlassCard>
+            </motion.div>
+          )}
+
+          {/* ───────────────────────── PERGUNTAS ───────────────────────── */}
+          {question && (
+            <motion.div
+              key={`${stage}-${qIndex}`}
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -30 }}
@@ -293,32 +510,39 @@ export default function LegadoPage() {
             >
               <div className="flex flex-wrap items-center justify-between gap-y-1 mb-4 text-sm text-white/50">
                 <span>
-                  Pergunta {current + 1} de {godQuizQuestions.length}
+                  {progress
+                    ? `${progress.label} — Pergunta ${progress.current} de ${progress.total}`
+                    : isTiebreakStage(stage)
+                      ? "Um sinal decide o desempate"
+                      : stage === "root"
+                        ? "Pergunta primordial"
+                        : "Escolha da facção vampírica"}
                 </span>
                 <span className="flex items-center gap-1.5 text-eden-holographic/70">
                   <Sparkles size={14} />
-                  O Oráculo observa
+                  Éden observa
                 </span>
               </div>
 
-              <div className="w-full h-1 bg-white/5 rounded-full mb-8">
-                <motion.div
-                  className="h-full rounded-full bg-gradient-to-r from-eden-holographic to-eden-purple"
-                  initial={false}
-                  animate={{
-                    width: `${((current + 1) / godQuizQuestions.length) * 100}%`,
-                  }}
-                  transition={{ duration: 0.4 }}
-                />
-              </div>
+              {progress && (
+                <div className="w-full h-1 bg-white/5 rounded-full mb-8">
+                  <motion.div
+                    className="h-full rounded-full bg-gradient-to-r from-eden-holographic to-eden-purple"
+                    initial={false}
+                    animate={{ width: `${(progress.current / progress.total) * 100}%` }}
+                    transition={{ duration: 0.4 }}
+                  />
+                </div>
+              )}
+              {!progress && <div className="mb-8" />}
 
               <GlassCard className="p-6 sm:p-8 md:p-12" hover={false} reveal={false}>
                 <h2 className="font-display text-xl md:text-2xl text-white mb-8 leading-relaxed">
-                  {godQuizQuestions[current].question}
+                  {question.question}
                 </h2>
 
                 <div className="space-y-3">
-                  {godQuizQuestions[current].options.map((option, i) => (
+                  {question.options.map((option, i) => (
                     <button
                       key={i}
                       onClick={() => choose(i)}
@@ -338,7 +562,7 @@ export default function LegadoPage() {
           )}
 
           {/* ───────────────────────── REVELANDO ───────────────────────── */}
-          {phase === "revealing" && (
+          {stage === "revealing" && (
             <motion.div
               key="revealing"
               initial={{ opacity: 0 }}
@@ -368,7 +592,7 @@ export default function LegadoPage() {
                 </div>
               </div>
 
-              {["O Oráculo está lendo o seu sangue…", "Os deuses sussurram o seu nome…"].map(
+              {(resultClan ? REVEAL_WHISPERS[resultClan.core] : REVEAL_WHISPERS.vampiros).map(
                 (line, i) => (
                   <motion.p
                     key={line}
@@ -385,20 +609,19 @@ export default function LegadoPage() {
           )}
 
           {/* ───────────────────────── RESULTADO ───────────────────────── */}
-          {phase === "result" && primary && chances && (
+          {stage === "result" && resultClan && (
             <motion.div
               key="result"
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7 }}
             >
-              {/* deus principal */}
               <GlassCard className="p-6 sm:p-8 md:p-12 text-center mb-8" hover={false} reveal={false}>
                 <p className="mb-6 text-sm uppercase tracking-[0.3em] text-white/40">
-                  O sangue revelou
+                  A essência revelou
                 </p>
 
-                <GodCard god={primary.god} />
+                <ClanCard clan={resultClan} />
 
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -409,23 +632,58 @@ export default function LegadoPage() {
                   <div className="inline-flex flex-wrap items-baseline justify-center gap-2 px-5 sm:px-8 py-4 rounded-xl bg-white/5 border border-white/10 mb-6 max-w-full">
                     <span
                       className="font-display text-5xl"
-                      style={{ color: primary.god.colors.from }}
+                      style={{ color: resultClan.colors.from }}
                     >
-                      {primary.percent}%
+                      {resultChances[0]?.percent ?? 0}%
                     </span>
                     <span className="text-sm text-white/50">
-                      de chance de você ser{" "}
-                      {["atena", "afrodite", "artemis", "hera", "demeter"].includes(primary.god.id)
-                        ? "filho(a) dela"
-                        : "filho(a) dele"}
+                      de afinidade com {resultClan.name}
                     </span>
                   </div>
 
                   <p className="font-display text-lg text-white/70 italic">
-                    {primary.god.phrase}
+                    “{resultClan.phrase}”
                   </p>
                 </motion.div>
               </GlassCard>
+
+              {/* núcleo / facção / cor / flor / símbolo */}
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.45, duration: 0.5 }}
+              >
+                <GlassCard className="p-8 mb-8" hover={false} reveal={false}>
+                  <h3 className="font-display text-lg text-white mb-5 flex items-center gap-2">
+                    <Moon size={18} style={{ color: resultClan.colors.from }} />
+                    Registro do arquétipo
+                  </h3>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-sm">
+                    <div>
+                      <p className="text-white/35 text-xs uppercase tracking-wider mb-1">Núcleo</p>
+                      <p className="text-white/80">{coreLabels[resultClan.core]}</p>
+                    </div>
+                    {resultClan.faction && (
+                      <div>
+                        <p className="text-white/35 text-xs uppercase tracking-wider mb-1">Facção</p>
+                        <p className="text-white/80">{factionLabels[resultClan.faction]}</p>
+                      </div>
+                    )}
+                    <div>
+                      <p className="text-white/35 text-xs uppercase tracking-wider mb-1">Cor</p>
+                      <p className="text-white/80">{resultClan.colorName}</p>
+                    </div>
+                    <div>
+                      <p className="text-white/35 text-xs uppercase tracking-wider mb-1">Flor</p>
+                      <p className="text-white/80">{resultClan.flower}</p>
+                    </div>
+                    <div>
+                      <p className="text-white/35 text-xs uppercase tracking-wider mb-1">Símbolo</p>
+                      <p className="text-white/80">{resultClan.symbol}</p>
+                    </div>
+                  </div>
+                </GlassCard>
+              </motion.div>
 
               {/* personalidade */}
               <motion.div
@@ -435,18 +693,18 @@ export default function LegadoPage() {
               >
                 <GlassCard className="p-8 mb-8" hover={false} reveal={false}>
                   <h3 className="font-display text-lg text-white mb-4 flex items-center gap-2">
-                    <Sparkles size={18} style={{ color: primary.god.colors.from }} />
-                    Marcas do seu sangue
+                    <Sparkles size={18} style={{ color: resultClan.colors.from }} />
+                    Marcas da sua essência
                   </h3>
                   <div className="flex flex-wrap gap-2 mb-6">
-                    {primary.god.personality.map((trait) => (
+                    {resultClan.traits.map((trait) => (
                       <span
                         key={trait}
                         className="px-3 py-1.5 rounded-full text-xs border"
                         style={{
-                          borderColor: `${primary.god.colors.from}40`,
-                          backgroundColor: `${primary.god.colors.from}12`,
-                          color: primary.god.colors.from,
+                          borderColor: `${resultClan.colors.from}40`,
+                          backgroundColor: `${resultClan.colors.from}12`,
+                          color: resultClan.colors.from,
                         }}
                       >
                         {trait}
@@ -454,8 +712,7 @@ export default function LegadoPage() {
                     ))}
                   </div>
                   <p className="text-sm text-white/50 leading-relaxed">
-                    <strong className="text-white/70">Sua fraqueza:</strong>{" "}
-                    {primary.god.weakness}
+                    <strong className="text-white/70">A sombra:</strong> {resultClan.shadow}
                   </p>
                 </GlassCard>
               </motion.div>
@@ -468,65 +725,64 @@ export default function LegadoPage() {
               >
                 <GlassCard className="p-8 mb-8" hover={false} reveal={false}>
                   <h3 className="font-display text-lg text-white mb-4 flex items-center gap-2">
-                    <ScrollText size={18} style={{ color: primary.god.colors.from }} />
-                    A história de {primary.god.name}
+                    <ScrollText size={18} style={{ color: resultClan.colors.from }} />
+                    A verdade sobre {resultClan.name}
                   </h3>
                   <div className="space-y-4 text-white/60 leading-relaxed text-sm md:text-base">
-                    {primary.god.story.split("\n\n").map((p, i) => (
+                    {resultClan.description.map((p, i) => (
                       <p key={i}>{p}</p>
                     ))}
-                    <p className="text-white/70 border-l-2 pl-4" style={{ borderColor: primary.god.colors.from }}>
-                      {primary.god.children}
-                    </p>
                   </div>
                 </GlassCard>
               </motion.div>
 
-              {/* todas as chances */}
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.85, duration: 0.5 }}
-              >
-                <GlassCard className="p-8 mb-8" hover={false} reveal={false}>
-                  <h3 className="font-display text-lg text-white mb-6">
-                    O que o Oráculo viu em você
-                  </h3>
-                  <div className="space-y-4">
-                    {chances.map(({ god, percent }, i) => (
-                      <div key={god.id} className="flex items-center gap-3 sm:gap-4">
-                        <div className="w-12 sm:w-16 shrink-0">
-                          <GodPortrait god={god} size={44} animate={false} />
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center justify-between mb-1.5">
-                            <span className="text-sm text-white/70 font-medium">
-                              {god.name}
-                            </span>
-                            <span
-                              className="text-sm font-display"
-                              style={{ color: god.colors.from }}
-                            >
-                              {percent}%
-                            </span>
+              {/* chances dentro do grupo */}
+              {resultChances.length > 1 && (
+                <motion.div
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.85, duration: 0.5 }}
+                >
+                  <GlassCard className="p-8 mb-8" hover={false} reveal={false}>
+                    <h3 className="font-display text-lg text-white mb-6">
+                      O que Éden viu em você
+                    </h3>
+                    <div className="space-y-4">
+                      {resultChances.map(({ clan, percent }, i) => (
+                        <div key={clan.id} className="flex items-center gap-3 sm:gap-4">
+                          <div className="w-12 sm:w-16 shrink-0">
+                            <ClanPortrait clan={clan} size={44} animate={false} />
                           </div>
-                          <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden">
-                            <motion.div
-                              className="h-full rounded-full"
-                              style={{
-                                background: `linear-gradient(90deg, ${god.colors.from}, ${god.colors.to})`,
-                              }}
-                              initial={{ width: 0 }}
-                              animate={{ width: `${percent}%` }}
-                              transition={{ delay: 1 + i * 0.08, duration: 0.6, ease: "easeOut" }}
-                            />
+                          <div className="flex-1">
+                            <div className="flex items-center justify-between mb-1.5">
+                              <span className="text-sm text-white/70 font-medium">
+                                {clan.name}
+                              </span>
+                              <span
+                                className="text-sm font-display"
+                                style={{ color: clan.colors.from }}
+                              >
+                                {percent}%
+                              </span>
+                            </div>
+                            <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden">
+                              <motion.div
+                                className="h-full rounded-full"
+                                style={{
+                                  background: `linear-gradient(90deg, ${clan.colors.from}, ${clan.colors.to})`,
+                                }}
+                                initial={{ width: 0 }}
+                                animate={{ width: `${percent}%` }}
+                                transition={{ delay: 1 + i * 0.08, duration: 0.6, ease: "easeOut" }}
+                              />
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
-                  </div>
-                </GlassCard>
-              </motion.div>
+                      ))}
+                    </div>
+                  </GlassCard>
+                </motion.div>
+              )}
 
               {/* ações */}
               <motion.div
@@ -540,8 +796,15 @@ export default function LegadoPage() {
                   className="eden-button px-6 py-3 flex items-center justify-center gap-2 w-full sm:w-auto"
                 >
                   <RotateCcw size={16} />
-                  Consultar o Oráculo novamente
+                  Refazer o ritual
                 </button>
+                <Link
+                  href={`/legado/${resultClan.id}?chance=${resultChances[0]?.percent ?? 0}`}
+                  className="eden-button px-6 py-3 flex items-center justify-center gap-2 w-full sm:w-auto"
+                >
+                  <ScrollText size={16} />
+                  Conhecer a história completa
+                </Link>
                 <a
                   href="https://discord.gg/eden"
                   target="_blank"

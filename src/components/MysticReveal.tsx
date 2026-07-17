@@ -2,11 +2,10 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { godQuizQuestions } from "@/data/gods";
 
 const whispers = [
   "algo desperta quando você se aproxima…",
-  "há sangue antigo correndo em suas veias.",
+  "uma essência antiga já sussurra o seu nome.",
 ];
 
 export default function MysticReveal() {
@@ -98,7 +97,7 @@ export default function MysticReveal() {
           transition={{ delay: 0.7, duration: 0.6 }}
           className="font-display text-3xl md:text-4xl holographic-text text-glow mb-4"
         >
-          De qual deus você é filho?
+          Qual essência habita você?
         </motion.h2>
 
         <motion.p
@@ -108,9 +107,9 @@ export default function MysticReveal() {
           transition={{ delay: 0.85, duration: 0.6 }}
           className="text-white/50 max-w-xl mx-auto mb-10 leading-relaxed"
         >
-          O Despertar não escolheu Éden por acaso. O Oráculo sente algo em
-          você — {godQuizQuestions.length} perguntas separam você da verdade
-          sobre o seu sangue.
+          O Despertar não escolheu Éden por acaso. Vampiros, Changelings e
+          Garou caminham entre nós — e uma dessas naturezas já pulsa dentro
+          de você. Só falta descobrir qual.
         </motion.p>
 
         <motion.div
@@ -123,7 +122,7 @@ export default function MysticReveal() {
             href="/legado"
             className="eden-button-primary px-10 py-4 text-lg inline-block"
           >
-            Revelar meu Legado Divino
+            Revelar minha essência
           </Link>
         </motion.div>
       </div>

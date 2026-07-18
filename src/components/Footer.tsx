@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -6,12 +7,16 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-eden-pink to-eden-purple flex items-center justify-center font-display font-bold text-sm">
-              E
-            </div>
+            <Image
+              src="/logo.png"
+              alt="Éden"
+              width={32}
+              height={32}
+              className="w-8 h-8 object-contain"
+            />
             <div>
               <p className="font-display text-sm holographic-text">ÉDEN</p>
-              <p className="text-xs text-white/40">O Desabrochar — Roleplay Sobrenatural</p>
+              <p className="text-xs text-white/40">O Desabrochar — Roleplay</p>
             </div>
           </div>
 
@@ -19,8 +24,16 @@ export default function Footer() {
             <Link href="/lore" className="hover:text-eden-pink transition-colors">
               Lore
             </Link>
+            <a
+              href="https://cidadeden.gitbook.io/eden"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-eden-pink transition-colors"
+            >
+              Regras
+            </a>
             <Link href="/legado" className="hover:text-eden-pink transition-colors">
-              Legado
+              Escolhas
             </Link>
             <Link href="/loja" className="hover:text-eden-pink transition-colors">
               Loja

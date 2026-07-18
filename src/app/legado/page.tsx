@@ -320,8 +320,8 @@ export default function LegadoPage() {
     <div className="relative z-10 px-4 py-6 sm:py-8">
       <div className="max-w-4xl mx-auto">
         <PageHeader
-          title="Qual Essência Habita Você?"
-          subtitle="Entre a eternidade, o sonho e o instinto, existem forças que moldam aqueles que atravessam os limites do mundo comum."
+          title="O que desperta em você?"
+          subtitle="Três naturezas aguardam além do Véu. O sangue, o sonho e a fúria reconhecem os seus."
         />
 
         <AnimatePresence mode="wait">
@@ -341,19 +341,10 @@ export default function LegadoPage() {
                   <Eye className="text-eden-holographic" size={22} />
                 </div>
 
-                <h2 className="font-display text-xl md:text-2xl text-white mb-3">
-                  Algo em Éden virou os olhos na sua direção.
-                </h2>
-
-                <p className="text-white/60 text-sm leading-relaxed max-w-xl mx-auto mb-2.5">
-                  A noite em Éden nunca dorme — ela apenas espera. Em algum lugar entre o
-                  último batimento do seu coração e o primeiro sussurro que você não soube
-                  explicar, uma essência antiga percebeu que você existe.
-                </p>
                 <p className="text-white/60 text-sm leading-relaxed max-w-xl mx-auto mb-5">
-                  Responda com sinceridade. Não escolha o que parece mais poderoso, belo ou
-                  admirável — escolha aquilo que você seria mesmo quando ninguém estivesse
-                  observando. É assim, e só assim, que uma essência verdadeira se revela.
+                  Em Éden, nenhuma essência desperta por acaso. Atravesse o Véu e descubra
+                  qual núcleo, facção e linhagem melhor refletem seus instintos, desejos e
+                  escolhas.
                 </p>
 
                 <div className="grid grid-cols-3 gap-3 max-w-md mx-auto mb-6">
@@ -375,7 +366,7 @@ export default function LegadoPage() {
                   onClick={start}
                   className="eden-button-primary px-10 py-3.5 text-base w-full sm:w-auto"
                 >
-                  Iniciar o Ritual
+                  Iniciar o Despertar
                 </button>
 
                 <p className="mt-4 text-xs text-white/30 italic">
@@ -806,7 +797,7 @@ export default function LegadoPage() {
                   Conhecer a história completa
                 </Link>
                 <a
-                  href="https://discord.gg/q4Q7ZdWZPX"
+                  href="https://discord.gg/eh7EKwEgv3"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="eden-button-primary px-6 py-3 w-full sm:w-auto text-center"

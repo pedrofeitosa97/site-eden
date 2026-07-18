@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   BookOpen,
@@ -10,6 +11,7 @@ import {
   Shield,
   Moon,
   Sparkles,
+  PawPrint,
 } from "lucide-react";
 import GlassCard from "@/components/GlassCard";
 import Reveal from "@/components/Reveal";
@@ -52,9 +54,26 @@ const features = [
 ];
 
 const factions = [
-  { icon: Moon, name: "Corte Vampírica", desc: "Reis decadentes nas sombras" },
-  { icon: Shield, name: "Forças Armadas", desc: "Ordem e equilíbrio" },
-  { icon: Sparkles, name: "Mundo Feérico", desc: "Onde a realidade falha" },
+  {
+    icon: Moon,
+    name: "Núcleo Vampírico",
+    desc: "Eternidade, influência e disputa por poder.",
+  },
+  {
+    icon: Sparkles,
+    name: "Núcleo Feérico",
+    desc: "Encanto, mistério e realidades instáveis.",
+  },
+  {
+    icon: PawPrint,
+    name: "Núcleo Garou",
+    desc: "Instinto, território e força ancestral.",
+  },
+  {
+    icon: Shield,
+    name: "Forças Armadas",
+    desc: "Ordem, contenção e presença institucional.",
+  },
 ];
 
 export default function HomePage() {
@@ -70,9 +89,14 @@ export default function HomePage() {
             transition={{ duration: 0.6 }}
             className="mb-6"
           >
-            <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-3 rounded-2xl bg-gradient-to-br from-eden-pink via-eden-holographic to-eden-purple flex items-center justify-center font-display text-2xl sm:text-3xl font-bold shadow-2xl shadow-eden-pink/20 animate-float">
-              E
-            </div>
+            <Image
+              src="/logo.png"
+              alt="Éden"
+              width={64}
+              height={64}
+              className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-3 object-contain drop-shadow-[0_0_16px_rgba(244,168,200,0.35)] animate-float"
+              priority
+            />
             <h1 className="font-display text-4xl sm:text-5xl holographic-text text-glow mb-1">
               ÉDEN
             </h1>
@@ -101,7 +125,7 @@ export default function HomePage() {
             className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <a
-              href="https://discord.gg/q4Q7ZdWZPX"
+              href="https://discord.gg/eh7EKwEgv3"
               target="_blank"
               rel="noopener noreferrer"
               className="eden-button-primary px-8 py-4 text-base sm:text-lg w-full sm:w-auto text-center"
@@ -173,7 +197,7 @@ export default function HomePage() {
               </div>
               <div className="text-center mt-8">
                 <a
-                  href="https://discord.gg/q4Q7ZdWZPX"
+                  href="https://discord.gg/eh7EKwEgv3"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="eden-button-primary px-8 py-3 inline-block"
@@ -191,12 +215,15 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
           <Reveal>
             <h2 className="font-display text-3xl text-center holographic-text mb-4">
-              Explore Éden
+              Explore o Éden
             </h2>
             <p className="text-white/50 max-w-2xl mx-auto mb-12 text-center leading-relaxed">
-              Um projeto de FiveM roleplay onde o sobrenatural emergiu das sombras.
-              Vampiros, lobisomens e criaturas feéricas disputam o controle de uma
-              cidade misteriosa, que respira… mas não como antes.
+              Um projeto autoral de FiveM Roleplay, inspirado nas atmosferas sombrias
+              e sobrenaturais de World of Darkness. Em uma cidade envolta por
+              mistérios, vampiros, lobisomens e criaturas feéricas disputam
+              influência, territórios e segredos enquanto antigas forças despertam
+              sob suas ruas. Éden ainda respira, mas já não pertence inteiramente ao
+              mundo dos mortais.
             </p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -221,18 +248,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Factions */}
+      {/* Núcleos */}
       <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-6xl mx-auto text-center">
           <Reveal blur>
             <h2 className="font-display text-3xl holographic-text mb-4">
-              O Despertar
+              Os Núcleos de Éden
             </h2>
             <p className="text-white/50 mb-12 max-w-2xl mx-auto">
-              Algo foi acordado em Éden, e desde então, nada voltou a dormir.
+              Quatro forças definem a dinâmica da cidade e o destino daqueles que a
+              habitam.
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {factions.map((faction, i) => (
               <GlassCard key={faction.name} className="p-6 text-center" delay={i * 0.15}>
                 <faction.icon
@@ -261,7 +289,7 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="https://discord.gg/q4Q7ZdWZPX"
+                href="https://discord.gg/eh7EKwEgv3"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="eden-button-primary px-10 py-4 text-lg inline-block w-full sm:w-auto text-center"

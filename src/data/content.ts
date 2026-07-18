@@ -641,38 +641,51 @@ export const shopItems: ShopItem[] = [
 
 export const socialLinks: SocialLink[] = [
   {
-    id: "discord",
-    name: "Discord",
-    url: "https://discord.gg/q4Q7ZdWZPX",
-    icon: "discord",
-    description: "Entre na nossa comunidade. Allowlist, suporte e novidades.",
+    id: "regras",
+    name: "Regras",
+    url: "https://cidadeden.gitbook.io/eden",
+    icon: "regras",
+    description:
+      "Diretrizes oficiais de convivência, conduta e funcionamento do servidor, essenciais para a construção de uma experiência organizada, imersiva e coerente com o universo de Éden.",
   },
   {
-    id: "instagram",
-    name: "Instagram",
-    url: "https://instagram.com/edenrp",
-    icon: "instagram",
-    description: "Screenshots, bastidores e atualizações visuais do servidor.",
+    id: "discord",
+    name: "Discord",
+    url: "https://discord.gg/eh7EKwEgv3",
+    icon: "discord",
+    description:
+      "Canal oficial da comunidade, com informações, suporte, atualizações e integração entre os jogadores.",
   },
   {
     id: "tiktok",
     name: "TikTok",
-    url: "https://tiktok.com/@edenrp",
+    url: "https://www.tiktok.com/@cidadeden?is_from_webapp=1&sender_device=pc",
     icon: "tiktok",
-    description: "Momentos épicos e highlights da comunidade.",
+    description:
+      "Conteúdos rápidos, destaques do servidor e registros do universo sobrenatural de Éden.",
   },
   {
     id: "youtube",
     name: "YouTube",
-    url: "https://youtube.com/@edenrp",
+    url: "https://www.youtube.com/@cidadeden",
     icon: "youtube",
-    description: "Vídeos oficiais, trailers e tutoriais do servidor.",
+    description:
+      "Cinemáticas, apresentações, eventos e produções oficiais do servidor.",
   },
   {
-    id: "twitter",
-    name: "Twitter / X",
-    url: "https://twitter.com/edenrp",
-    icon: "twitter",
-    description: "Anúncios em tempo real e interação com a comunidade.",
+    id: "instagram",
+    name: "Instagram",
+    url: "https://www.instagram.com/cidadeden/",
+    icon: "instagram",
+    description:
+      "Novidades, registros visuais, comunicados e conteúdos exclusivos da comunidade.",
+  },
+  {
+    id: "spotify",
+    name: "Spotify",
+    url: "https://open.spotify.com/user/31ai7oa5uixc4xhvkjhzv54fhre4?si=d4a5ae8c31144b65",
+    icon: "spotify",
+    description:
+      "Seleção musical oficial inspirada nas atmosferas vampírica, feérica e ancestral de Éden.",
   },
 ];
